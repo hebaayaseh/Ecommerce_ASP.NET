@@ -22,17 +22,13 @@ namespace Ecommerce_ASP.NET.Manager
                 l_name = userDto.l_Name,
                 email = userDto.Email,
                 passwordHash = passwordHash,
-                role = userDto.role
+                role = userDto.role,
+                phone = userDto.Phone
             };
             _context.Users.Add(user);
              _context.SaveChanges();
             
         }
-        public async Task<User>? LoginDto(loginDto loginDto )
-        {
-            var user = _context.Users.FirstOrDefault(u => u.email == loginDto.email );
-            if (user == null) return null;
-            return user;
-        }
+        
     }
 }

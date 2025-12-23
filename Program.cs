@@ -1,4 +1,6 @@
 using Ecommerce_ASP.NET.Data;
+using Ecommerce_ASP.NET.DTOs.Category;
+using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Manager;
@@ -73,7 +75,8 @@ builder.Services.AddScoped<PasswordHasher>();
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<UserManager>();
 builder.Services.AddScoped<UpdateProfile>();
-
+builder.Services.AddScoped<CategoryDto>();
+builder.Services.AddScoped<AddProduct>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using Ecommerce_ASP.NET.DTOs.Product;
+﻿using Ecommerce_ASP.NET.DTOs.Category;
+using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.Manager;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace Ecommerce_ASP.NET.Controllers
             this.productManager = productManager;
         }
         [Authorize(Roles = "Admin")]
-        [HttpPost("AddProduct")]
+        [HttpPost("UpdateProduct")]
         public IActionResult AddExsistProduct([FromForm] AddProduct productdto)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -33,7 +34,7 @@ namespace Ecommerce_ASP.NET.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpPost("AddNewProduct")]
-        public IActionResult AddNewProduct([FromForm] AddProduct productdto)
+        public IActionResult AddNewProduct([FromBody] AddProduct productdto)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -42,9 +43,36 @@ namespace Ecommerce_ASP.NET.Controllers
 
             if (!int.TryParse(userIdClaim, out int userId))
                 return BadRequest("Invalid user id format");
-            var product = productManager.AddNewProduct(productdto, userId);
-            if (product == null) return NotFound("Product Cant Add!");
+             productManager.AddNewProduct(productdto, userId);
             return Created();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("DeleteProduct")]
+        public IActionResult DeleteProduct(int productId)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+             productManager.DeleteProduct(productId, userId);
+            return NoContent();
+        }
+        [Authorize]
+        [HttpGet("GetAllProductsByCategor")]
+        public IActionResult GetAllProductsByCategory(int categoryDto )
+        {
+            var products = productManager.GetAllProducts(categoryDto);
+            if(products==null) return NotFound("No Products Found!");
+            return Ok(products);
+        }
+        [Authorize]
+        [HttpGet("SearchProduct")]
+        public IActionResult SearchToProduct(string productName)
+        {
+            var products = productManager.SearchProduct(productName);
+            if (products == null) return NotFound("No Products Found!");
+            return Ok(products);
         }
     }
 }

@@ -32,6 +32,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
+    "Method": "AddCategory",
+    "RelativePath": "api/Category/AddCategory",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addCategory",
+        "Type": "Ecommerce_ASP.NET.DTOs.Category.AddCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
+    "Method": "SeachCategory",
+    "RelativePath": "api/Category/SeachCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
     "Method": "AddNewProduct",
     "RelativePath": "api/Product/AddNewProduct",
@@ -40,58 +72,56 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
+        "Name": "productdto",
+        "Type": "Ecommerce_ASP.NET.DTOs.Product.AddProduct",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/Product/DeleteProduct",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "price",
+        "Name": "productId",
         "Type": "System.Int32",
         "IsRequired": false
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
+    "Method": "GetAllProductsByCategory",
+    "RelativePath": "api/Product/GetAllProductsByCategor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "quantity",
+        "Name": "categoryDto",
         "Type": "System.Int32",
         "IsRequired": false
-      },
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
+    "Method": "SearchToProduct",
+    "RelativePath": "api/Product/SearchProduct",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Name": "image",
+        "Name": "productName",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.created_at",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.updated_at",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.Products",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Ecommerce_ASP.NET.Models.Products, Ecommerce_ASP.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       }
     ],
@@ -100,7 +130,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
     "Method": "AddExsistProduct",
-    "RelativePath": "api/Product/AddProduct",
+    "RelativePath": "api/Product/UpdateProduct",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -117,11 +147,11 @@
       },
       {
         "Name": "price",
-        "Type": "System.Int32",
+        "Type": "System.Decimal",
         "IsRequired": false
       },
       {
-        "Name": "quantity",
+        "Name": "stock",
         "Type": "System.Int32",
         "IsRequired": false
       },
@@ -131,7 +161,7 @@
         "IsRequired": false
       },
       {
-        "Name": "category.id",
+        "Name": "category.Id",
         "Type": "System.Int32",
         "IsRequired": false
       },
@@ -143,21 +173,6 @@
       {
         "Name": "category.description",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.created_at",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.updated_at",
-        "Type": "System.DateTime",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.Products",
-        "Type": "System.Collections.Generic.ICollection\u00601[[Ecommerce_ASP.NET.Models.Products, Ecommerce_ASP.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       }
     ],
