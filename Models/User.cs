@@ -18,15 +18,16 @@ namespace Ecommerce_ASP.NET.Models
         public string passwordHash { get; set; }
         [Required]
         public UserRole role { get; set; }
+        public string phone { get; set; }
         public ICollection<Notification> notification { get; set; }
-        public Wishlist? wishlist { get; set; }
-        public string? phone { get; set; }
+        public ICollection<WishlistItems>? wishlist { get; set; }
         public ICollection<Review>? review { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
         public ICollection<CartItems> cart { get; set; }
         public ICollection<Orders> orders { get; set; }
         public ICollection<Address>? addresses { get; set; }
+        public DateTime created_at { get; set; }
+        public DateTime updated_at { get; set; }
+        
 
         public User()
         {

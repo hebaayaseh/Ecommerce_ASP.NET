@@ -1,16 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce_ASP.NET.Models
 {
     public class WishlistItems
     {
+        [Key]
         public int id { get; set; }
         public DateTime AddedAt { get; set; }
-        public ICollection<Products>? Products { get; set; }
-        [ForeignKey("productId")]
+        public Products? Products { get; set; }
+        
+        public User user { get; set; }
+        [ForeignKey("user")]
+        public int userId { get; set; }
+        [ForeignKey("Products")]
         public int productId { get; set; }
-        public ICollection<Wishlist>? wishlist { get; set; }
-        [ForeignKey("wishlistId")]
-        public int wishlistId { get; set; }
+        public WishlistItems()
+        {
+            AddedAt = DateTime.UtcNow;
+        }
     }
 }

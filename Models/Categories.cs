@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce_ASP.NET.Models
 {
     public class Categories
     {
+        [Key]
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }

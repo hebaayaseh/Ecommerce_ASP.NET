@@ -30,7 +30,6 @@ namespace Ecommerce_ASP.NET.Data
         }
         public DbSet<Models.Address> addresses { get; set; }
         public DbSet<Models.Discount> discounts { get; set; }
-        public DbSet<Models.Wishlist> wishlists { get; set; }
         public DbSet<Models.Review> reviews { get; set; }
         public DbSet<Models.Payment> payments { get; set; }
         public DbSet<Models.Notification> notifications { get; set; }
@@ -40,5 +39,6 @@ namespace Ecommerce_ASP.NET.Data
         public DbSet<Models.OrderItems> OrderItems { get; set; }
         public DbSet<Models.User> Users { get; set; }
         public DbSet<Models.Categories> Categories { get; set; }
+        public DbSet<Models.WishlistItems> wishlist { get; set; }
     }
 }

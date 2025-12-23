@@ -5,6 +5,7 @@ namespace Ecommerce_ASP.NET.Models
 {
     public class CartItems
     {
+        [Key]
         public int id { get; set; }
         [Required]
         public int quantity { get; set; }
@@ -13,7 +14,9 @@ namespace Ecommerce_ASP.NET.Models
         public User User { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public ICollection<Products> Products { get; set; }
+        public Products product { get; set; }
+        [ForeignKey("product")]
+        public int productId { get; set; }
        
         public CartItems()
         {

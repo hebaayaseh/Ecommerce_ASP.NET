@@ -1,4 +1,5 @@
-﻿using Ecommerce_ASP.NET.Manager;
+﻿using Ecommerce_ASP.NET.DTOs.UserDto;
+using Ecommerce_ASP.NET.Manager;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -19,12 +20,41 @@ namespace Ecommerce_ASP.NET.Controllers
         [HttpGet("GetProfile")]
         public IActionResult GetProfile()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (userId == null)
+            if (userIdClaim == null)
                 return Unauthorized("No user id in token");
 
-            return Ok(new { userId });
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+
+            var user = userManager.GetProfile(userId);
+
+            if (user == null)
+                return NotFound("User not found");
+
+            return Ok(user);
+        }
+        [Authorize]
+        [HttpPut("UpdateProfile")]
+        public IActionResult UpdateProfile([FromBody] UpdateProfile userdto)
+        {
+
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+
+            var user = userManager.UpdateProfile(userId , userdto);
+
+            if (user == null)
+                return NotFound("User not found");
+
+            return Ok(user);
+
         }
     }
 }

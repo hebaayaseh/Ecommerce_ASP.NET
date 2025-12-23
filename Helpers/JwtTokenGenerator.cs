@@ -42,7 +42,7 @@ namespace Ecommerce_ASP.NET.Helpers
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(60),
+                expires: DateTime.UtcNow.AddHours(70),
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
             );
 

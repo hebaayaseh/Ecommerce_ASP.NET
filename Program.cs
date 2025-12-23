@@ -1,4 +1,5 @@
 using Ecommerce_ASP.NET.Data;
+using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Manager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -71,7 +72,7 @@ builder.Services.AddScoped<OrderManager>();
 builder.Services.AddScoped<PasswordHasher>();
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<UserManager>();
-
+builder.Services.AddScoped<UpdateProfile>();
 
 
 var app = builder.Build();

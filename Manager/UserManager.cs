@@ -1,18 +1,23 @@
 ﻿using Ecommerce_ASP.NET.Data;
+using Ecommerce_ASP.NET.DTOs.User;
+using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce_ASP.NET.Manager
 {
     public class UserManager
     {
         private readonly AppDbContext dbContext;
-        public UserManager(AppDbContext dbContext)
+        private readonly UpdateProfile updateProfile;
+        public UserManager(AppDbContext dbContext , UpdateProfile updateProfile)
         {
             this.dbContext = dbContext;
+            this.updateProfile = updateProfile;
         }
         public User? GetProfile(int userId)
         {
-            //var user = dbContext.Users.FirstOrDefault(u=>u.id == userId);
+            
             var user = dbContext.Users
                 .Where(u => u.id == userId)
                 .Select(u => new User
@@ -29,5 +34,18 @@ namespace Ecommerce_ASP.NET.Manager
             if (user == null) return null;
             else return user;
         }
+        public User? UpdateProfile(int userId ,UpdateProfile userdto)
+        {
+            var user = dbContext.Users.Where(u => u.id == userId).FirstOrDefault();
+            if(user == null) return null;
+            
+                user.f_name = userdto.F_Name ;
+                user.l_name = userdto.L_Name ;
+                user.email = userdto.Email ;
+                user.phone = userdto.phone ;
+                dbContext.SaveChanges();
+                return user;
+        }
+
     }
 }

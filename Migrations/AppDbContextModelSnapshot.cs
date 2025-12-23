@@ -24,17 +24,17 @@ namespace Ecommerce_ASP.NET.Migrations
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Address", b =>
                 {
-                    b.Property<int>("PhoneNumber")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PhoneNumber"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int>("PhoneNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("PostalCode")
@@ -51,10 +51,7 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Property<int>("userId")
                         .HasColumnType("int");
 
-                    b.HasKey("PhoneNumber");
-
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasKey("id");
 
                     b.HasIndex("userId");
 
@@ -75,6 +72,9 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
                     b.Property<int>("quantity")
                         .HasColumnType("int");
 
@@ -84,6 +84,8 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("productId");
 
                     b.ToTable("CartItems");
                 });
@@ -228,6 +230,9 @@ namespace Ecommerce_ASP.NET.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -248,6 +253,8 @@ namespace Ecommerce_ASP.NET.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("UserId");
 
@@ -297,9 +304,6 @@ namespace Ecommerce_ASP.NET.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("cartItemsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("categoryId")
                         .HasColumnType("int");
 
@@ -311,7 +315,6 @@ namespace Ecommerce_ASP.NET.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("image_url")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("name")
@@ -327,16 +330,9 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("wishlistItemsid")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
-                    b.HasIndex("cartItemsId");
-
                     b.HasIndex("categoryId");
-
-                    b.HasIndex("wishlistItemsid");
 
                     b.ToTable("Products");
                 });
@@ -401,6 +397,7 @@ namespace Ecommerce_ASP.NET.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("phone")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("role")
@@ -413,33 +410,6 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Wishlist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("wishlistItemsid")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.HasIndex("wishlistItemsid");
-
-                    b.ToTable("wishlists");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.WishlistItems", b =>
@@ -456,29 +426,25 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Property<int>("productId")
                         .HasColumnType("int");
 
-                    b.Property<int>("wishlistId")
+                    b.Property<int>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.ToTable("WishlistItems");
+                    b.HasIndex("productId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("wishlist");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Address", b =>
                 {
-                    b.HasOne("Ecommerce_ASP.NET.Models.Orders", "orders")
-                        .WithOne("address")
-                        .HasForeignKey("Ecommerce_ASP.NET.Models.Address", "OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Ecommerce_ASP.NET.Models.User", "user")
                         .WithMany("addresses")
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("orders");
 
                     b.Navigation("user");
                 });
@@ -491,7 +457,15 @@ namespace Ecommerce_ASP.NET.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Ecommerce_ASP.NET.Models.Products", "product")
+                        .WithMany("cartItems")
+                        .HasForeignKey("productId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("User");
+
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Notification", b =>
@@ -526,6 +500,12 @@ namespace Ecommerce_ASP.NET.Migrations
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Orders", b =>
                 {
+                    b.HasOne("Ecommerce_ASP.NET.Models.Address", "address")
+                        .WithMany("orders")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Ecommerce_ASP.NET.Models.User", "User")
                         .WithMany("orders")
                         .HasForeignKey("UserId")
@@ -537,6 +517,8 @@ namespace Ecommerce_ASP.NET.Migrations
                         .HasForeignKey("discountId");
 
                     b.Navigation("User");
+
+                    b.Navigation("address");
 
                     b.Navigation("discount");
                 });
@@ -554,27 +536,13 @@ namespace Ecommerce_ASP.NET.Migrations
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Products", b =>
                 {
-                    b.HasOne("Ecommerce_ASP.NET.Models.CartItems", "cartItems")
-                        .WithMany("Products")
-                        .HasForeignKey("cartItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Ecommerce_ASP.NET.Models.Categories", "category")
                         .WithMany("Products")
                         .HasForeignKey("categoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ecommerce_ASP.NET.Models.WishlistItems", "wishlistItems")
-                        .WithMany("Products")
-                        .HasForeignKey("wishlistItemsid");
-
-                    b.Navigation("cartItems");
-
                     b.Navigation("category");
-
-                    b.Navigation("wishlistItems");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Review", b =>
@@ -596,26 +564,28 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Wishlist", b =>
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.WishlistItems", b =>
                 {
-                    b.HasOne("Ecommerce_ASP.NET.Models.User", "User")
-                        .WithOne("wishlist")
-                        .HasForeignKey("Ecommerce_ASP.NET.Models.Wishlist", "UserId")
+                    b.HasOne("Ecommerce_ASP.NET.Models.Products", "Products")
+                        .WithMany("wishlistItems")
+                        .HasForeignKey("productId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ecommerce_ASP.NET.Models.WishlistItems", "wishlistItems")
+                    b.HasOne("Ecommerce_ASP.NET.Models.User", "user")
                         .WithMany("wishlist")
-                        .HasForeignKey("wishlistItemsid");
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Products");
 
-                    b.Navigation("wishlistItems");
+                    b.Navigation("user");
                 });
 
-            modelBuilder.Entity("Ecommerce_ASP.NET.Models.CartItems", b =>
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Address", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Categories", b =>
@@ -632,18 +602,18 @@ namespace Ecommerce_ASP.NET.Migrations
                 {
                     b.Navigation("OrderItems");
 
-                    b.Navigation("address")
-                        .IsRequired();
-
-                    b.Navigation("payment")
-                        .IsRequired();
+                    b.Navigation("payment");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Products", b =>
                 {
                     b.Navigation("OrderItems");
 
+                    b.Navigation("cartItems");
+
                     b.Navigation("review");
+
+                    b.Navigation("wishlistItems");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.User", b =>
@@ -657,13 +627,6 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Navigation("orders");
 
                     b.Navigation("review");
-
-                    b.Navigation("wishlist");
-                });
-
-            modelBuilder.Entity("Ecommerce_ASP.NET.Models.WishlistItems", b =>
-                {
-                    b.Navigation("Products");
 
                     b.Navigation("wishlist");
                 });

@@ -9,14 +9,14 @@ namespace Ecommerce_ASP.NET.Models
         public string description { get; set; }
         public decimal price { get; set; }
         public int stock { get; set; }
-        public string image_url { get; set; }
+        public string? image_url { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
-        public CartItems cartItems { get; set; }
-        public WishlistItems? wishlistItems { get; set; }
+        
+        public ICollection<CartItems> cartItems { get; set; }
+        public ICollection<WishlistItems>? wishlistItems { get; set; }
         public ICollection<Review>? review { get; set; }
-        [ForeignKey("cartItems")]
-        public int cartItemsId { get; set; }
+        
         public Categories category { get; set; }
         [ForeignKey("category")]
         public int categoryId { get; set; }

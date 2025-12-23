@@ -32,6 +32,138 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
+    "Method": "AddNewProduct",
+    "RelativePath": "api/Product/AddNewProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "price",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "image",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.created_at",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.updated_at",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.Products",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Ecommerce_ASP.NET.Models.Products, Ecommerce_ASP.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
+    "Method": "AddExsistProduct",
+    "RelativePath": "api/Product/AddProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "price",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "image",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.created_at",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.updated_at",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.Products",
+        "Type": "System.Collections.Generic.ICollection\u00601[[Ecommerce_ASP.NET.Models.Products, Ecommerce_ASP.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
     "Method": "GetProfile",
     "RelativePath": "api/User/GetProfile",
@@ -39,6 +171,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/User/UpdateProfile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userdto",
+        "Type": "Ecommerce_ASP.NET.DTOs.UserDto.UpdateProfile",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

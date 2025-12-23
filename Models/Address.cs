@@ -14,12 +14,13 @@ namespace Ecommerce_ASP.NET.Models
         [Required]
         public int PostalCode { get; set; }
         [Key]
+        public int id { get; set; }
+        [Required]
         public int PhoneNumber { get; set; }
         public User user { get; set; }
         [ForeignKey("user")]
         public int userId { get; set; }
-        public Orders orders { get; set; }
-        [ForeignKey("orders")]
-        public int OrderId { get; set; }
+        public ICollection<Orders> orders { get; set; }
+        
     }
 }

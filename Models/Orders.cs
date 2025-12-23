@@ -8,7 +8,7 @@ namespace Ecommerce_ASP.NET.Models
     {
         public int id { get; set; }
         public decimal totalPrice { get; set; }
-        public Payment payment { get; set; }
+        public Payment? payment { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public User User { get; set; }
@@ -16,10 +16,12 @@ namespace Ecommerce_ASP.NET.Models
         public int UserId { get; set; }
         public ICollection<OrderItems> OrderItems { get; set; }
         public OrderStatus status { get; set; }
-        public Discount discount { get; set; }
+        public Discount? discount { get; set; }
         [ForeignKey("discount")]
         public int? discountId { get; set; }
-        public Address address { get; set; }
+        public Address? address { get; set; }
+        [ForeignKey("address")]
+        public int AddressId { get; set; }
         public Orders()
         {
             created_at = DateTime.Now;
