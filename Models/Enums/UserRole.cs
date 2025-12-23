@@ -1,6 +1,8 @@
 ﻿namespace Ecommerce_ASP.NET.Models.Enums
 {
-    public class UserRole
+    public enum UserRole
     {
+        Admin = 1,
+        Customer = 2,
     }
 }

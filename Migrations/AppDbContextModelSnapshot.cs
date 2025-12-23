@@ -22,6 +22,45 @@ namespace Ecommerce_ASP.NET.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Address", b =>
+                {
+                    b.Property<int>("PhoneNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("PhoneNumber"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("building")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PhoneNumber");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("addresses");
+                });
+
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.CartItems", b =>
                 {
                     b.Property<int>("id")
@@ -76,6 +115,82 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Discount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("DiscountValue")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("MaxUsage")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UsedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("minimumOrderAmount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("discounts");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("notifications");
+                });
+
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.OrderItems", b =>
                 {
                     b.Property<int>("id")
@@ -119,6 +234,9 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("discountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("status")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -133,7 +251,42 @@ namespace Ecommerce_ASP.NET.Migrations
 
                     b.HasIndex("UserId");
 
+                    b.HasIndex("discountId");
+
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("orderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("orderId")
+                        .IsUnique();
+
+                    b.ToTable("payments");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Products", b =>
@@ -174,13 +327,51 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Property<DateTime>("updated_at")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("wishlistItemsid")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
 
                     b.HasIndex("cartItemsId");
 
                     b.HasIndex("categoryId");
 
+                    b.HasIndex("wishlistItemsid");
+
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("reviews");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.User", b =>
@@ -209,6 +400,9 @@ namespace Ecommerce_ASP.NET.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("phone")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("role")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -221,6 +415,74 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Wishlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("wishlistItemsid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.HasIndex("wishlistItemsid");
+
+                    b.ToTable("wishlists");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.WishlistItems", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<DateTime>("AddedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("productId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("wishlistId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("WishlistItems");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Address", b =>
+                {
+                    b.HasOne("Ecommerce_ASP.NET.Models.Orders", "orders")
+                        .WithOne("address")
+                        .HasForeignKey("Ecommerce_ASP.NET.Models.Address", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ecommerce_ASP.NET.Models.User", "user")
+                        .WithMany("addresses")
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("orders");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.CartItems", b =>
                 {
                     b.HasOne("Ecommerce_ASP.NET.Models.User", "User")
@@ -230,6 +492,17 @@ namespace Ecommerce_ASP.NET.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Notification", b =>
+                {
+                    b.HasOne("Ecommerce_ASP.NET.Models.User", "user")
+                        .WithMany("notification")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.OrderItems", b =>
@@ -259,7 +532,24 @@ namespace Ecommerce_ASP.NET.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Ecommerce_ASP.NET.Models.Discount", "discount")
+                        .WithMany("Orders")
+                        .HasForeignKey("discountId");
+
                     b.Navigation("User");
+
+                    b.Navigation("discount");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Payment", b =>
+                {
+                    b.HasOne("Ecommerce_ASP.NET.Models.Orders", "orders")
+                        .WithOne("payment")
+                        .HasForeignKey("Ecommerce_ASP.NET.Models.Payment", "orderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Products", b =>
@@ -276,9 +566,51 @@ namespace Ecommerce_ASP.NET.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Ecommerce_ASP.NET.Models.WishlistItems", "wishlistItems")
+                        .WithMany("Products")
+                        .HasForeignKey("wishlistItemsid");
+
                     b.Navigation("cartItems");
 
                     b.Navigation("category");
+
+                    b.Navigation("wishlistItems");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Review", b =>
+                {
+                    b.HasOne("Ecommerce_ASP.NET.Models.Products", "Product")
+                        .WithMany("review")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ecommerce_ASP.NET.Models.User", "User")
+                        .WithMany("review")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Wishlist", b =>
+                {
+                    b.HasOne("Ecommerce_ASP.NET.Models.User", "User")
+                        .WithOne("wishlist")
+                        .HasForeignKey("Ecommerce_ASP.NET.Models.Wishlist", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ecommerce_ASP.NET.Models.WishlistItems", "wishlistItems")
+                        .WithMany("wishlist")
+                        .HasForeignKey("wishlistItemsid");
+
+                    b.Navigation("User");
+
+                    b.Navigation("wishlistItems");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.CartItems", b =>
@@ -291,21 +623,49 @@ namespace Ecommerce_ASP.NET.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.Discount", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Orders", b =>
                 {
                     b.Navigation("OrderItems");
+
+                    b.Navigation("address")
+                        .IsRequired();
+
+                    b.Navigation("payment")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Products", b =>
                 {
                     b.Navigation("OrderItems");
+
+                    b.Navigation("review");
                 });
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.User", b =>
                 {
+                    b.Navigation("addresses");
+
                     b.Navigation("cart");
 
+                    b.Navigation("notification");
+
                     b.Navigation("orders");
+
+                    b.Navigation("review");
+
+                    b.Navigation("wishlist");
+                });
+
+            modelBuilder.Entity("Ecommerce_ASP.NET.Models.WishlistItems", b =>
+                {
+                    b.Navigation("Products");
+
+                    b.Navigation("wishlist");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,8 +18,22 @@ namespace Ecommerce_ASP.NET.Data
             modelBuilder.Entity<Orders>()
                 .Property(u => u.status)
                 .HasConversion<string>();
+            modelBuilder.Entity<Payment>()
+                .Property(u => u.Status)
+                .HasConversion<string>();
+            modelBuilder.Entity<Notification>()
+                .Property(u => u.Status)
+                .HasConversion<string>();
+            modelBuilder.Entity<Discount>()
+                .Property(u => u.Type)
+                .HasConversion<string>();
         }
-        
+        public DbSet<Models.Address> addresses { get; set; }
+        public DbSet<Models.Discount> discounts { get; set; }
+        public DbSet<Models.Wishlist> wishlists { get; set; }
+        public DbSet<Models.Review> reviews { get; set; }
+        public DbSet<Models.Payment> payments { get; set; }
+        public DbSet<Models.Notification> notifications { get; set; }
         public DbSet<Models.Products> Products { get; set; }
         public DbSet<Models.CartItems> CartItems { get; set; }
         public DbSet<Models.Orders> Orders { get; set; }

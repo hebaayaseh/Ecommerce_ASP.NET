@@ -112,4 +112,17 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.pdb
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.genruntimeconfig.cache
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\ref\Ecommerce_ASP.NET.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.sourcelink.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Duende.IdentityModel.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Duende.IdentityServer.Storage.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll

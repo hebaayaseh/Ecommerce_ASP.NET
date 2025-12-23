@@ -1,6 +1,13 @@
 ﻿namespace Ecommerce_ASP.NET.Models.Enums
 {
-    public class OrderStatus
+
+    public enum OrderStatus
     {
+        Pending,
+        Processing,
+        Shipped,
+        Delivered,
+        Cancelled
     }
+
 }

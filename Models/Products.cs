@@ -13,6 +13,8 @@ namespace Ecommerce_ASP.NET.Models
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public CartItems cartItems { get; set; }
+        public WishlistItems? wishlistItems { get; set; }
+        public ICollection<Review>? review { get; set; }
         [ForeignKey("cartItems")]
         public int cartItemsId { get; set; }
         public Categories category { get; set; }

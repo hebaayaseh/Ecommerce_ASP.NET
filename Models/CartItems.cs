@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ecommerce_ASP.NET.Models
 {
     public class CartItems
     {
         public int id { get; set; }
+        [Required]
         public int quantity { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
