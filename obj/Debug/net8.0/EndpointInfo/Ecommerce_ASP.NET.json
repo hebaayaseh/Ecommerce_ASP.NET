@@ -469,6 +469,94 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
+    "/api/User/AddDiscount": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/UpdateDiscount": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/DeleteDiscount/{discountId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "discountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+>>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -663,10 +751,23 @@
             "format": "date-time",
             "nullable": true
           },
+<<<<<<< HEAD
+=======
+          "isActive": {
+            "type": "boolean"
+          },
+>>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
           "maxUsage": {
             "type": "integer",
             "format": "int32"
           },
+<<<<<<< HEAD
+=======
+          "usedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+>>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
           "minimumOrderAmount": {
             "type": "integer",
             "format": "int32"

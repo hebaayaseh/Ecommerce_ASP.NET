@@ -91,6 +91,47 @@ namespace Ecommerce_ASP.NET.Controllers
                 return BadRequest("Order Creation Failed!");
             return Ok(orders);
         }
+<<<<<<< HEAD
         
+=======
+        [Authorize(Roles ="Admin")]
+        [HttpPost("AddDiscount")]
+        public IActionResult AddDiscount([FromBody] DiscountDto discountDto)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            var discount = userManager.AddDiscountCode(discountDto , userId);
+            if(discount==null)
+                return BadRequest("Discount Creation Failed!");
+            return Ok(discount);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost("UpdateDiscount")]
+        public IActionResult UpdateDiscount([FromBody] DiscountDto discountDto)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+             userManager.UpdateDiscount(discountDto, userId);
+            return Ok();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("DeleteDiscount/{discountId}")]
+        public IActionResult DeleteDiscount([FromRoute]int discountId)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            userManager.DeleteDiscount(discountId , userId);
+            return Ok();
+        }
+>>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
     }
 }

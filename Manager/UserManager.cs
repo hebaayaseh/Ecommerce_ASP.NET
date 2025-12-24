@@ -89,6 +89,7 @@ namespace Ecommerce_ASP.NET.Manager
                 }).ToList(),
                 created_at = DateTime.Now
             };
+<<<<<<< HEAD
 
             dbContext.Orders.Add(order1);
             dbContext.SaveChanges();
@@ -101,6 +102,61 @@ namespace Ecommerce_ASP.NET.Manager
             if (product == null) throw new KeyNotFoundException("Not Found Product!");
             return product.price;
         }
+=======
+>>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
 
+            dbContext.Orders.Add(order1);
+            dbContext.SaveChanges();
+
+            return order1;
+        }
+        public decimal GetPrice(int productId)
+        {
+            var product = dbContext.Products.Where(p => p.id == productId).FirstOrDefault();
+            if (product == null) throw new KeyNotFoundException("Not Found Product!");
+            return product.price;
+        }
+        public Discount AddDiscountCode(DiscountDto discountDto ,int userId)
+        {
+            var admin = dbContext.Users.FirstOrDefault(u => u.role == UserRole.Admin && u.id == userId);
+            if (admin == null) throw new UnauthorizedAccessException("Only Admin Can Enter Discount Code!");
+            var discount = new Discount()
+            {
+                Code = discountDto.code,
+                Type = discountDto.discountType,
+                DiscountValue = discountDto.amount,
+                EndDate = discountDto.ExpiryDate,
+                MaxUsage= discountDto.MaxUsage,
+                minimumOrderAmount= discountDto.minimumOrderAmount,
+            };
+            dbContext.discounts.Add(discount);
+            dbContext.SaveChanges();
+            return discount;
+        }
+        public void UpdateDiscount(DiscountDto discountDto, int userId)
+        {
+            var admin = dbContext.Users.FirstOrDefault(u => u.role == UserRole.Admin && u.id == userId);
+            if (admin == null) throw new UnauthorizedAccessException("Only Admin Can Update Discount Code!");
+            var discount = dbContext.discounts.FirstOrDefault(d => d.Id == discountDto.id);
+            if(discount == null) throw new KeyNotFoundException("Discount Code Not Found!");
+
+            discount.Code = discountDto.code;
+            discount.Type = discountDto.discountType;
+            discount.DiscountValue = discountDto.amount;
+            discount.EndDate = discountDto.ExpiryDate;
+            discount.MaxUsage = discountDto.MaxUsage;
+            discount.minimumOrderAmount = discountDto.minimumOrderAmount;
+
+            dbContext.SaveChanges();
+        }
+        public void DeleteDiscount(int discountId , int userId)
+        {
+            var admin = dbContext.Users.FirstOrDefault(u => u.role == UserRole.Admin && u.id == userId);
+            if (admin == null) throw new UnauthorizedAccessException("Only Admin Can Delete Discount Code!");
+            var discount = dbContext.discounts.FirstOrDefault(d => d.Id == discountId);
+            if (discount == null) throw new KeyNotFoundException("Discount Code Not Found!");
+            dbContext.discounts.Remove(discount);
+            dbContext.SaveChanges();
+        }
     }
 }
