@@ -32,6 +32,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "Method": "AddToCart",
+    "RelativePath": "api/CartIltem/AddToCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
     "Method": "AddCategory",
     "RelativePath": "api/Category/AddCategory",
@@ -228,60 +249,6 @@
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
-<<<<<<< HEAD
-=======
-    "Method": "AddDiscount",
-    "RelativePath": "api/User/AddDiscount",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "discountDto",
-        "Type": "Ecommerce_ASP.NET.DTOs.Discount.DiscountDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
->>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
-    "Method": "CreateOrder",
-    "RelativePath": "api/User/CreateOrder",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "order",
-        "Type": "Ecommerce_ASP.NET.DTOs.Order.AddOrder",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
-<<<<<<< HEAD
-=======
-    "Method": "DeleteDiscount",
-    "RelativePath": "api/User/DeleteDiscount/{discountId}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "discountId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
->>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
     "Method": "GetAllUser",
     "RelativePath": "api/User/GetAllUsers",
     "HttpMethod": "GET",
@@ -298,22 +265,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
-    "Method": "UpdateDiscount",
-    "RelativePath": "api/User/UpdateDiscount",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "discountDto",
-        "Type": "Ecommerce_ASP.NET.DTOs.Discount.DiscountDto",
-        "IsRequired": true
-      }
-    ],
     "ReturnTypes": []
   },
   {

@@ -67,6 +67,36 @@
         }
       }
     },
+    "/api/CartIltem/AddToCart": {
+      "post": {
+        "tags": [
+          "CartIltem"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "quantity",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Category/AddCategory": {
       "post": {
         "tags": [
@@ -438,125 +468,6 @@
         }
       }
     },
-    "/api/User/CreateOrder": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddOrder"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddOrder"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddOrder"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-<<<<<<< HEAD
-=======
-    "/api/User/AddDiscount": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscountDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscountDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscountDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/User/UpdateDiscount": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscountDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscountDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/DiscountDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/User/DeleteDiscount/{discountId}": {
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "discountId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
->>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -617,41 +528,6 @@
         },
         "additionalProperties": false
       },
-      "AddOrder": {
-        "type": "object",
-        "properties": {
-          "addOrderItem": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AddOrderItems"
-            },
-            "nullable": true
-          },
-          "discountCode": {
-            "$ref": "#/components/schemas/DiscountDto"
-          },
-          "address": {
-            "$ref": "#/components/schemas/AddressDto"
-          },
-          "paymentMethod": {
-            "$ref": "#/components/schemas/PaymentDto"
-          }
-        },
-        "additionalProperties": false
-      },
-      "AddOrderItems": {
-        "type": "object",
-        "properties": {
-          "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProductToOrder"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "AddProduct": {
         "required": [
           "description",
@@ -684,28 +560,6 @@
           },
           "category": {
             "$ref": "#/components/schemas/CategoryDto"
-          }
-        },
-        "additionalProperties": false
-      },
-      "AddressDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "street": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "postalCode": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -751,23 +605,10 @@
             "format": "date-time",
             "nullable": true
           },
-<<<<<<< HEAD
-=======
-          "isActive": {
-            "type": "boolean"
-          },
->>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
           "maxUsage": {
             "type": "integer",
             "format": "int32"
           },
-<<<<<<< HEAD
-=======
-          "usedCount": {
-            "type": "integer",
-            "format": "int32"
-          },
->>>>>>> e580a701cd0cfeae561d9bffa2f9c6100d5bf0fc
           "minimumOrderAmount": {
             "type": "integer",
             "format": "int32"
@@ -782,38 +623,6 @@
         ],
         "type": "integer",
         "format": "int32"
-      },
-      "PaymentDto": {
-        "type": "object",
-        "properties": {
-          "method": {
-            "type": "string",
-            "nullable": true
-          },
-          "amount": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ProductToOrder": {
-        "type": "object",
-        "properties": {
-          "productId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "productName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
       },
       "UpdateProfile": {
         "type": "object",
