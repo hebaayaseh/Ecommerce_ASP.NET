@@ -180,12 +180,86 @@
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "AddDiscount",
+    "RelativePath": "api/User/AddDiscount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "discountDto",
+        "Type": "Ecommerce_ASP.NET.DTOs.Discount.DiscountDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/User/CreateOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order",
+        "Type": "Ecommerce_ASP.NET.DTOs.Order.AddOrder",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "DeleteDiscount",
+    "RelativePath": "api/User/DeleteDiscount/{discountId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "discountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "GetAllUser",
+    "RelativePath": "api/User/GetAllUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
     "Method": "GetProfile",
     "RelativePath": "api/User/GetProfile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "UpdateDiscount",
+    "RelativePath": "api/User/UpdateDiscount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "discountDto",
+        "Type": "Ecommerce_ASP.NET.DTOs.Discount.DiscountDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

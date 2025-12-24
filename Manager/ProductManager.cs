@@ -67,8 +67,10 @@ namespace Ecommerce_ASP.NET.Manager
             dbContext.SaveChanges();
             
         }
-        public ICollection<AddProduct>? GetAllProducts(int categoryId)
+        public ICollection<AddProduct>? GetAllProducts(int categoryId ,int userId)
         {
+            var user = dbContext.Users.FirstOrDefault(u => u.role == UserRole.Admin && u.id == userId || u.role == UserRole.Customer && u.id == userId);
+            if (user == null) throw new UnauthorizedAccessException("Please Login!");
             var products = dbContext.Products
                 .Where(p => p.categoryId == categoryId)
                 .Select(p => new AddProduct
@@ -101,6 +103,13 @@ namespace Ecommerce_ASP.NET.Manager
             });
             if(products == null ) return null;
             return products.ToList();
+        }
+        //in process!!!!1
+        public decimal GetPrice(int productId)
+        {
+            var product = dbContext.Products.Where(p=>p.id==productId).FirstOrDefault();
+            if(product==null)  throw new KeyNotFoundException("Not Found Product!");
+            return product.price;
         }
     }
 }

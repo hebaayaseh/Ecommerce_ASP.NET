@@ -1,4 +1,5 @@
 using Ecommerce_ASP.NET.Data;
+using Ecommerce_ASP.NET.DTOs.Address;
 using Ecommerce_ASP.NET.DTOs.Category;
 using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.UserDto;
@@ -77,6 +78,8 @@ builder.Services.AddScoped<UserManager>();
 builder.Services.AddScoped<UpdateProfile>();
 builder.Services.AddScoped<CategoryDto>();
 builder.Services.AddScoped<AddProduct>();
+builder.Services.AddScoped<ProductToOrder>();
+builder.Services.AddScoped<AddressDto>();
 
 var app = builder.Build();
 

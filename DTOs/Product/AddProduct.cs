@@ -17,6 +17,7 @@ namespace Ecommerce_ASP.NET.DTOs.Product
         [Required]
         public string image { get; set; }
         public CategoryDto category { get; set; }
+        
 
     }
 }
