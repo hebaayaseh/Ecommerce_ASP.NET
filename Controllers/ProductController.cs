@@ -62,7 +62,12 @@ namespace Ecommerce_ASP.NET.Controllers
         [HttpGet("GetAllProductsByCategor")]
         public IActionResult GetAllProductsByCategory(int categoryDto )
         {
-            var products = productManager.GetAllProducts(categoryDto);
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            var products = productManager.GetAllProducts(categoryDto,userId);
             if(products==null) return NotFound("No Products Found!");
             return Ok(products);
         }
