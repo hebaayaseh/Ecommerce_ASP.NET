@@ -80,6 +80,8 @@ builder.Services.AddScoped<CategoryDto>();
 builder.Services.AddScoped<AddProduct>();
 builder.Services.AddScoped<ProductToOrder>();
 builder.Services.AddScoped<AddressDto>();
+builder.Services.AddScoped<DiscountManager>();
+
 
 var app = builder.Build();
 

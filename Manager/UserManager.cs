@@ -101,5 +101,6 @@ namespace Ecommerce_ASP.NET.Manager
             if (product == null) throw new KeyNotFoundException("Not Found Product!");
             return product.price;
         }
+
     }
 }

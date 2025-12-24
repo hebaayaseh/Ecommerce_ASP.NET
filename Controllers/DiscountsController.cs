@@ -1,11 +1,7 @@
-﻿using Ecommerce_ASP.NET.Data;
-using Ecommerce_ASP.NET.DTOs.Discount;
+﻿using Ecommerce_ASP.NET.DTOs.Discount;
 using Ecommerce_ASP.NET.Manager;
-using Ecommerce_ASP.NET.Models;
-using Ecommerce_ASP.NET.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace Ecommerce_ASP.NET.Controllers
