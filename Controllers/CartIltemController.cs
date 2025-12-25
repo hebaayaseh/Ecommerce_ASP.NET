@@ -63,8 +63,9 @@ namespace Ecommerce_ASP.NET.Controllers
                 return Unauthorized("No user id in token");
             if (!int.TryParse(userIdClaim, out int userId))
                 return BadRequest("Invalid user id format");
-            cartManager.DeleteQuantityForProduct(userId,cartDto,quantity);
-            return Ok();
+            var cart=cartManager.DeleteQuantityForProduct(userId,cartDto,quantity);
+            if(cart==null) return NotFound();
+            return Ok(cart);
         }
     }
 }

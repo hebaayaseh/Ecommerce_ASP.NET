@@ -55,5 +55,12 @@ namespace Ecommerce_ASP.NET.Manager
             dbContext.discounts.Remove(discount);
             dbContext.SaveChanges();
         }
+        public bool checkvalidCode(DiscountUserDto discountDto)
+        {
+            var discount = dbContext.discounts.FirstOrDefault(d => d.Code == discountDto.code);
+            if (discount == null) return false;
+            if (discount.EndDate < DateTime.Now) return false;
+            return true;
+        }
     }
 }

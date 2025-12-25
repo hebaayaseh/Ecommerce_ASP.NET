@@ -4,6 +4,7 @@
     {
         OrderCreated,
         PaymentCompleted,
-        OrderShipped
+        OrderShipped,
+        Cancelled,
     }
 }

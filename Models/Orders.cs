@@ -8,7 +8,7 @@ namespace Ecommerce_ASP.NET.Models
     {
         public int id { get; set; }
         public decimal totalPrice { get; set; }
-        public Payment? payment { get; set; }
+        public Payment payment { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         public User User { get; set; }

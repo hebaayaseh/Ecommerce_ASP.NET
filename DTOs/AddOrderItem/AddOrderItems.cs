@@ -6,15 +6,10 @@ namespace Ecommerce_ASP.NET.DTOs.AddOrderItem
 {
     public class AddOrderItems
     {
+        public int id {  get; set; }
+        public int quantity { get; set; }
+        public int ProductId { get; set; }
+        public decimal PriceAtPurchase { get; set; }
         
-       /* public readonly ProductToOrder productToOrder;
-        public readonly AddProduct addProduct;
-        public AddOrderItems( ProductToOrder productToOrder, AddProduct addProduct)
-        {
-            this.productToOrder = productToOrder;
-            this.addProduct = addProduct;
-        }
-        public ICollection<ProductToOrder>? products { get; set; }*/
-
     }
 }

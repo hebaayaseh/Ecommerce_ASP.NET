@@ -138,6 +138,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetOrderDetails",
+    "RelativePath": "api/Controller/Checkout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "checkout",
+        "Type": "Ecommerce_ASP.NET.DTOs.CheckoutDto.CheckoutRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "CancelledOrder",
+    "RelativePath": "api/Controller/CncelledOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetOrderDetails",
+    "RelativePath": "api/Controller/GetOrderDetails{orderId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.DiscountsController",
     "Method": "AddDiscount",
     "RelativePath": "api/Discounts/AddDiscount",

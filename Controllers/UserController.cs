@@ -1,5 +1,4 @@
 ﻿using Ecommerce_ASP.NET.DTOs.Discount;
-using Ecommerce_ASP.NET.DTOs.Order;
 using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Manager;
 using Microsoft.AspNetCore.Authorization;
@@ -76,21 +75,7 @@ namespace Ecommerce_ASP.NET.Controllers
                 return NotFound("No Users Found!");
             return Ok(users);
         }
-        //[Authorize]
-        //[HttpPost("CreateOrder")]
-        /*public IActionResult CreateOrder([FromBody] AddOrder order)
-        {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (userIdClaim == null)
-                return Unauthorized("No user id in token");
-            if (!int.TryParse(userIdClaim, out int userId))
-                return BadRequest("Invalid user id format");
-            var orders = userManager.createOrder(order , userId);
-            if(orders==null)
-                return BadRequest("Order Creation Failed!");
-            return Ok(orders);
-        }*/
+        
 
     }
 }

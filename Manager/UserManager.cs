@@ -1,7 +1,6 @@
 ﻿using Ecommerce_ASP.NET.Data;
 using Ecommerce_ASP.NET.DTOs.Address;
 using Ecommerce_ASP.NET.DTOs.Discount;
-using Ecommerce_ASP.NET.DTOs.Order;
 using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.User;
 using Ecommerce_ASP.NET.DTOs.UserDto;
@@ -72,26 +71,7 @@ namespace Ecommerce_ASP.NET.Manager
                 .ToList();
             return user;
         }
-        /*public Orders createOrder(AddOrder order , int userId)
-        {
-            var admin = dbContext.Users.FirstOrDefault(u => u.role == UserRole.Admin && u.id == userId || u.role == UserRole.Customer && u.id == userId);
-            if (admin == null) throw new UnauthorizedAccessException("Please Login!");
-            var order1 = new Orders()
-            {
-                UserId = userId,
-                AddressId = order.Address.id,
-                discountId = order.DiscountCode != null ? order.DiscountCode.id : null,
-                OrderItems = order.addOrderItem.Select(oi => new OrderItems
-                {
-                    ProductId = oi.productToOrder.productId,
-                    quantity = oi.productToOrder.quantity,
-                    price = GetPrice(oi.productToOrder.productId)
-                }).ToList(),
-                created_at = DateTime.Now
-            };*/
-
-
-           
+     
         public decimal GetPrice(int productId)
         {
             var product = dbContext.Products.Where(p => p.id == productId).FirstOrDefault();

@@ -321,6 +321,83 @@
         }
       }
     },
+    "/api/Controller/Checkout": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Controller/GetOrderDetails{orderId}": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Controller/CncelledOrder": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Product/UpdateProduct": {
       "post": {
         "tags": [
@@ -651,6 +728,36 @@
         },
         "additionalProperties": false
       },
+      "AddressDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "building": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "CartDto": {
         "type": "object",
         "properties": {
@@ -683,6 +790,24 @@
           "description": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CheckoutRequestDto": {
+        "type": "object",
+        "properties": {
+          "cartDto": {
+            "$ref": "#/components/schemas/CartDto"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDto"
+          },
+          "discount": {
+            "$ref": "#/components/schemas/DiscountUserDto"
+          },
+          "payment": {
+            "$ref": "#/components/schemas/PaymentDto"
           }
         },
         "additionalProperties": false
@@ -728,6 +853,29 @@
         ],
         "type": "integer",
         "format": "int32"
+      },
+      "DiscountUserDto": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "discountType": {
+            "$ref": "#/components/schemas/DiscountType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentDto": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "UpdateProfile": {
         "type": "object",

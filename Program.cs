@@ -1,12 +1,13 @@
 using Ecommerce_ASP.NET.Data;
+using Ecommerce_ASP.NET.DTOs.AddOrderItem;
 using Ecommerce_ASP.NET.DTOs.Address;
 using Ecommerce_ASP.NET.DTOs.Cart;
 using Ecommerce_ASP.NET.DTOs.Category;
+using Ecommerce_ASP.NET.DTOs.Discount;
 using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Manager;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -81,8 +82,11 @@ builder.Services.AddScoped<CategoryDto>();
 builder.Services.AddScoped<AddProduct>();
 builder.Services.AddScoped<CartDto>();
 builder.Services.AddScoped<AddressDto>();
-
 builder.Services.AddScoped<DiscountManager>();
+builder.Services.AddScoped<DiscountUserDto>();
+builder.Services.AddScoped<AddOrderItems>();
+builder.Services.AddScoped<BankApprove>();
+builder.Services.AddScoped<ProcessPayment>();
 
 
 
