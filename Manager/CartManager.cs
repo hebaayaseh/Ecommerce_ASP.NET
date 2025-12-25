@@ -1,9 +1,7 @@
 ﻿using Ecommerce_ASP.NET.Data;
 using Ecommerce_ASP.NET.DTOs.Cart;
-using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.Models;
-using System.Reflection.Metadata.Ecma335;
-
+using Microsoft.EntityFrameworkCore;
 namespace Ecommerce_ASP.NET.Manager
 {
     public class CartManager
@@ -54,18 +52,71 @@ namespace Ecommerce_ASP.NET.Manager
                     quantity = quantity,
                     created_at = DateTime.Now
                 };
-
-                
-
                 dbContext.CartItems.Add(item);
                 dbContext.SaveChanges();
-
                 return new CartDto
                 {
                     productId = productId,
                     quantity = quantity
                 };
             }
+        }
+        public void deleteCart(int userId,int cartId)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId );
+            if (user == null)
+                throw new UnauthorizedAccessException("User Not Found!");
+            var cart = dbContext.CartItems.FirstOrDefault(u => u.UserId == userId && u.id == cartId);
+            if (cart == null) throw new Exception("Dont Have Cart!");
+            dbContext.CartItems.Remove(cart);
+            dbContext.SaveChanges();
+        }
+        public void deletProductFromCart(int userId,int productId)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User Not Found!");
+
+            var cartItems = dbContext.CartItems
+                .Where(ci => ci.UserId == userId && ci.productId == productId)
+                .ToList();
+
+            if (!cartItems.Any())
+                throw new Exception("No Product Found In Cart!");
+
+            dbContext.CartItems.RemoveRange(cartItems);
+            dbContext.SaveChanges();
+        }
+        public void DeleteQuantityForProduct(int userId, CartDto cartDto, int quantity)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User Not Found!");
+
+            var cartItem = dbContext.CartItems
+                .FirstOrDefault(ci => ci.UserId == userId && ci.productId == cartDto.productId);
+
+            if (cartItem == null)
+                throw new Exception("Product not found in cart!");
+
+            if (quantity <= 0)
+                throw new Exception("Invalid quantity!");
+
+            if (quantity > cartItem.quantity)
+                throw new Exception("Quantity exceeds cart quantity!");
+
+            cartItem.quantity -= quantity;
+
+            if (cartItem.quantity == 0)
+            {
+                dbContext.CartItems.Remove(cartItem);
+            }
+            else
+            {
+                cartItem.updated_at = DateTime.Now;
+            }
+
+            dbContext.SaveChanges();
         }
 
     }

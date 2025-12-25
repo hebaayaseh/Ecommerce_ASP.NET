@@ -53,6 +53,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "Method": "DeleteCart",
+    "RelativePath": "api/CartIltem/DeleteCart/{catrId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "catrId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "Method": "DeleteProductFromCart",
+    "RelativePath": "api/CartIltem/DeleteProductFromCart/{productId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "Method": "DeleteQuantityForProduct",
+    "RelativePath": "api/CartIltem/DeleteQuantityForProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartDto",
+        "Type": "Ecommerce_ASP.NET.DTOs.Cart.CartDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
     "Method": "AddCategory",
     "RelativePath": "api/Category/AddCategory",
