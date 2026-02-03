@@ -148,6 +148,18 @@
         }
       }
     },
+    "/api/CartItem/GetCart": {
+      "get": {
+        "tags": [
+          "CartItem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/CartItem/AddToCart": {
       "post": {
         "tags": [
@@ -1211,6 +1223,108 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/GetWishlistItems": {
+      "get": {
+        "tags": [
+          "WishlistItems"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/AddToWishlist/{productId}": {
+      "post": {
+        "tags": [
+          "WishlistItems"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/RemoveFromWishlist/{productId}": {
+      "delete": {
+        "tags": [
+          "WishlistItems"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/MoveToCart": {
+      "post": {
+        "tags": [
+          "WishlistItems"
+        ],
+        "parameters": [
+          {
+            "name": "quantity",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

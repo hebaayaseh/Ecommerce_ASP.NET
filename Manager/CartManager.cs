@@ -12,6 +12,24 @@ namespace Ecommerce_ASP.NET.Manager
             this.dbContext = dbContext;
             this.cartDto = cartDto;
         }
+        public CartDto? GetCart(int userId)
+        { 
+        
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User Not Found!");
+            var cartItems = dbContext.CartItems
+                .Where(ci => ci.UserId == userId)
+                .ToList();
+            if (!cartItems.Any())
+                return null;
+            var firstCartItem = cartItems.First();
+            return new CartDto
+            {
+                productId = firstCartItem.productId,
+                quantity = firstCartItem.quantity
+            };
+        }
         public CartDto? AddToCart(int userId, int productId, int quantity)
         {
             var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
@@ -32,8 +50,6 @@ namespace Ecommerce_ASP.NET.Manager
             {
                 existItem.quantity += quantity;
                 existItem.updated_at = DateTime.Now;
-                
-
                 dbContext.SaveChanges();
 
                 return new CartDto
@@ -76,14 +92,14 @@ namespace Ecommerce_ASP.NET.Manager
             if (user == null)
                 throw new UnauthorizedAccessException("User Not Found!");
 
-            var cartItems = dbContext.CartItems
+            var product = dbContext.CartItems
                 .Where(ci => ci.UserId == userId && ci.productId == productId)
                 .ToList();
 
-            if (!cartItems.Any())
+            if (!product.Any())
                 throw new Exception("No Product Found In Cart!");
 
-            dbContext.CartItems.RemoveRange(cartItems);
+            dbContext.CartItems.RemoveRange(product);
             dbContext.SaveChanges();
         }
         public CartItems? DeleteQuantityForProduct(int userId, CartDto cartDto, int quantity)

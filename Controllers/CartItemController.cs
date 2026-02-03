@@ -17,6 +17,20 @@ namespace Ecommerce_ASP.NET.Controllers
             this.cartManager = cartManager;
         }
         [Authorize]
+        [HttpGet("GetCart")]
+        public IActionResult GetCart()
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            var cart = cartManager.GetCart(userId);
+            if(cart==null)
+                return NotFound("Cart is empty.");
+            return Ok(cart);
+        }
+        [Authorize]
         [HttpPost("AddToCart")]
         public IActionResult AddToCart(int productId, int quantity)
         {

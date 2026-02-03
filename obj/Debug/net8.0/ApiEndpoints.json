@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
+    "Method": "AddProductToWishlist",
+    "RelativePath": "AddToWishlist/{productId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.AuthController",
     "Method": "forgetPasswored",
     "RelativePath": "api/Auth/ForgetPassword",
@@ -145,6 +161,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartItemController",
+    "Method": "GetCart",
+    "RelativePath": "api/CartItem/GetCart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -704,6 +730,53 @@
       {
         "Name": "userdto",
         "Type": "Ecommerce_ASP.NET.DTOs.UserDto.UpdateProfile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
+    "Method": "GetWishlistItems",
+    "RelativePath": "GetWishlistItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
+    "Method": "MoveToCart",
+    "RelativePath": "MoveToCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
+    "Method": "RemoveProductFromWishlist",
+    "RelativePath": "RemoveFromWishlist/{productId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

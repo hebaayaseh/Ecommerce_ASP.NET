@@ -87,6 +87,7 @@ builder.Services.AddScoped<CategoryManager>();
 builder.Services.AddScoped<CartManager>();
 builder.Services.AddScoped<OrderManager>();
 builder.Services.AddScoped<PasswordHasher>();
+builder.Services.AddScoped<WishlistItemsManager>();
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<UserManager>();
 builder.Services.AddScoped<UpdateProfile>();
