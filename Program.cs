@@ -1,4 +1,4 @@
-using Ecommerce_ASP.NET.Data;
+﻿using Ecommerce_ASP.NET.Data;
 using Ecommerce_ASP.NET.DTOs.AddOrderItem;
 using Ecommerce_ASP.NET.DTOs.Address;
 using Ecommerce_ASP.NET.DTOs.Cart;
@@ -6,6 +6,7 @@ using Ecommerce_ASP.NET.DTOs.Category;
 using Ecommerce_ASP.NET.DTOs.Discount;
 using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.UserDto;
+using Ecommerce_ASP.NET.Ecommerce_ASP.NET.Filters;
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Manager;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,17 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddAuthorization();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Ecommerce API",
+        Version = "v1",
+        Description = "Ecommerce ASP.NET API"
+    });
+
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+    c.OperationFilter<FileUploadOperationFilter>();
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -87,7 +99,7 @@ builder.Services.AddScoped<DiscountUserDto>();
 builder.Services.AddScoped<AddOrderItems>();
 builder.Services.AddScoped<BankApprove>();
 builder.Services.AddScoped<ProcessPayment>();
-
+builder.Services.AddScoped<PasswordHasher>();
 
 
 var app = builder.Build();

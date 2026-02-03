@@ -31,9 +31,9 @@ namespace Ecommerce_ASP.NET.Controllers
             authManager.RegisterDto(userdto, passwordHash);
             return Created("", "User registered successfully");
         }
-        [Authorize]
+       
         [HttpPost("Login")]
-        public async Task<IActionResult> Loging([FromBody] loginDto userdto)
+        public async Task<IActionResult> Login([FromBody] loginDto userdto)
         {
            
             

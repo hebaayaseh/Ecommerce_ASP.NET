@@ -90,8 +90,8 @@ namespace Ecommerce_ASP.NET.Controllers
         [HttpPost("products/{productId}/image")]
         [Consumes("multipart/form-data")]
         public IActionResult UploadProductImage(
-        int productId,
-        [FromForm] IFormFile imageFile)
+        [FromRoute] int productId,
+         IFormFile imageFile)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userIdClaim == null)

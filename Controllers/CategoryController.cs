@@ -1,5 +1,6 @@
 ﻿using Ecommerce_ASP.NET.DTOs.Category;
 using Ecommerce_ASP.NET.Manager;
+using Ecommerce_ASP.NET.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -31,8 +32,8 @@ namespace Ecommerce_ASP.NET.Controllers
             return Created();
         }
         [Authorize]
-        [HttpGet("SeachCategory")]
-        public IActionResult SeachCategory([FromBody]string name)
+        [HttpGet("SearchCategory")]
+        public IActionResult SearchCategory([FromQuery]string name)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -53,8 +54,11 @@ namespace Ecommerce_ASP.NET.Controllers
                 return Unauthorized("No user id in token");
             if (!int.TryParse(userIdClaim, out int userId))
                 return BadRequest("Invalid user id format");
-            categoryManager.GetAllCategory(userId);
-            return Ok();
+            List<Categories> categories = categoryManager.GetAllCategory(userId);
+            if (categories == null || categories.Count == 0)
+                return NotFound("No categories found.");
+            return Ok(categories);
+            
         }
         [Authorize]
         [HttpPut("UpdateCategory")]
@@ -69,7 +73,7 @@ namespace Ecommerce_ASP.NET.Controllers
             return Ok();
         }
         [Authorize]
-        [HttpDelete("DeleteCategory")]
+        [HttpDelete("DeleteCategory/{categoryId:int}")]
         public IActionResult DeleteCategory([FromRoute] int categoryId)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -81,7 +85,7 @@ namespace Ecommerce_ASP.NET.Controllers
             return Ok();
         }
         [Authorize]
-        [HttpGet("GetCategoryById")]
+        [HttpGet("GetCategoryById/{categoryId:int}")]
         public IActionResult GetCategoryById([FromRoute] int categoryId)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -94,7 +98,7 @@ namespace Ecommerce_ASP.NET.Controllers
         }
 
         [Authorize]
-        [HttpGet("GetCategorywithProduct")]
+        [HttpGet("GetCategorywithProduct/{categoryId:int}")]
         public IActionResult GetCategorywithProduct([FromRoute] int categoryId)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -151,6 +151,7 @@ namespace Ecommerce_ASP.NET.Manager
             var product = dbContext.Products.FirstOrDefault(p => p.id == productId);
             if (product == null) throw new KeyNotFoundException("Product Not Found!");
             dbContext.Products.Remove(product);
+            dbContext.SaveChanges();
         }
         public AddProduct ? searchProductById(int productId,int userId)
         {

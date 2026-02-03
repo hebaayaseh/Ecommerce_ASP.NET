@@ -22,7 +22,7 @@
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.AuthController",
-    "Method": "Loging",
+    "Method": "Login",
     "RelativePath": "api/Auth/Login",
     "HttpMethod": "POST",
     "IsController": true,
@@ -74,9 +74,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartItemController",
     "Method": "AddToCart",
-    "RelativePath": "api/CartIltem/AddToCart",
+    "RelativePath": "api/CartItem/AddToCart",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -95,9 +95,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartItemController",
     "Method": "DeleteCart",
-    "RelativePath": "api/CartIltem/DeleteCart/{catrId}",
+    "RelativePath": "api/CartItem/DeleteCart/{catrId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -111,9 +111,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartItemController",
     "Method": "DeleteProductFromCart",
-    "RelativePath": "api/CartIltem/DeleteProductFromCart/{productId}",
+    "RelativePath": "api/CartItem/DeleteProductFromCart/{productId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -127,9 +127,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartIltemController",
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.CartItemController",
     "Method": "DeleteQuantityForProduct",
-    "RelativePath": "api/CartIltem/DeleteQuantityForProduct",
+    "RelativePath": "api/CartItem/DeleteQuantityForProduct",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -166,7 +166,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
     "Method": "DeleteCategory",
-    "RelativePath": "api/Category/DeleteCategory",
+    "RelativePath": "api/Category/DeleteCategory/{categoryId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -174,7 +174,7 @@
       {
         "Name": "categoryId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -192,7 +192,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
     "Method": "GetCategoryById",
-    "RelativePath": "api/Category/GetCategoryById",
+    "RelativePath": "api/Category/GetCategoryById/{categoryId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -200,7 +200,7 @@
       {
         "Name": "categoryId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -208,7 +208,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
     "Method": "GetCategorywithProduct",
-    "RelativePath": "api/Category/GetCategorywithProduct",
+    "RelativePath": "api/Category/GetCategorywithProduct/{categoryId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -216,15 +216,15 @@
       {
         "Name": "categoryId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.CategoryController",
-    "Method": "SeachCategory",
-    "RelativePath": "api/Category/SeachCategory",
+    "Method": "SearchCategory",
+    "RelativePath": "api/Category/SearchCategory",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -232,7 +232,7 @@
       {
         "Name": "name",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -248,54 +248,6 @@
       {
         "Name": "categoryDto",
         "Type": "Ecommerce_ASP.NET.DTOs.Category.CategoryDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
-    "Method": "GetOrderDetails",
-    "RelativePath": "api/Controller/Checkout",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "checkout",
-        "Type": "Ecommerce_ASP.NET.DTOs.CheckoutDto.CheckoutRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
-    "Method": "CancelledOrder",
-    "RelativePath": "api/Controller/CncelledOrder",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "orderId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
-    "Method": "GetOrderDetails",
-    "RelativePath": "api/Controller/GetOrderDetails{orderId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "orderId",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -344,6 +296,54 @@
       {
         "Name": "discountDto",
         "Type": "Ecommerce_ASP.NET.DTOs.Discount.DiscountDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "CancelledOrder",
+    "RelativePath": "api/Order/CancelledOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetOrderDetails",
+    "RelativePath": "api/Order/Checkout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "checkout",
+        "Type": "Ecommerce_ASP.NET.DTOs.CheckoutDto.CheckoutRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetOrderDetails",
+    "RelativePath": "api/Order/GetOrderDetails/{orderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -472,33 +472,8 @@
         "IsRequired": true
       },
       {
-        "Name": "ContentType",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ContentDisposition",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Headers",
-        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
-        "IsRequired": false
-      },
-      {
-        "Name": "Length",
-        "Type": "System.Int64",
-        "IsRequired": false
-      },
-      {
-        "Name": "Name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FileName",
-        "Type": "System.String",
+        "Name": "imageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
       }
     ],
@@ -626,22 +601,6 @@
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
-    "Method": "updateAddress",
-    "RelativePath": "api/User",
-    "HttpMethod": "",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "addressDto",
-        "Type": "Ecommerce_ASP.NET.DTOs.Address.AddressDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
     "Method": "addAddress",
     "RelativePath": "api/User/AddAddress",
     "HttpMethod": "POST",
@@ -716,6 +675,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
+    "Method": "updateAddress",
+    "RelativePath": "api/User/UpdateAddress",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressDto",
+        "Type": "Ecommerce_ASP.NET.DTOs.Address.AddressDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

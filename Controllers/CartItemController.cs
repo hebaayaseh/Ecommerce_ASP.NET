@@ -8,10 +8,11 @@ namespace Ecommerce_ASP.NET.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CartIltemController : ControllerBase
+    public class CartItemController
+        : ControllerBase
     {
         private readonly CartManager cartManager;
-        public CartIltemController(CartManager cartManager)
+        public CartItemController(CartManager cartManager)
         {
             this.cartManager = cartManager;
         }

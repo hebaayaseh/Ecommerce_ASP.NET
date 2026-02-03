@@ -92,7 +92,7 @@ namespace Ecommerce_ASP.NET.Controllers
             userManager.changePassword(userId, userdto.CurrentPassword, userdto.NewPassword);
 
             return Ok("Password changed successfully");
-            return Ok();
+            
         }
         [Authorize]
         [HttpGet("GetPrice/{productId}")]
@@ -128,6 +128,7 @@ namespace Ecommerce_ASP.NET.Controllers
             return Ok("Address added successfully");
         }
         [Authorize]
+        [HttpPut("UpdateAddress")]
         public IActionResult updateAddress([FromBody] AddressDto addressDto)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);

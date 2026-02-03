@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace Ecommerce_ASP.NET.Controllers
 {
-    [Route("api/Controller")]
+    [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -40,7 +40,7 @@ namespace Ecommerce_ASP.NET.Controllers
             return Ok("Order placed successfully");
         }
         [Authorize]
-        [HttpPost("GetOrderDetails{orderId:int}")]
+        [HttpGet("GetOrderDetails/{orderId:int}")]
 
         public IActionResult GetOrderDetails([FromRoute]int orderId)
         {
@@ -54,7 +54,7 @@ namespace Ecommerce_ASP.NET.Controllers
             return Ok(details);
         }
         [Authorize]
-        [HttpPost("CncelledOrder")]
+        [HttpPost("CancelledOrder")]
         public IActionResult CancelledOrder([FromRoute]int orderId)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
