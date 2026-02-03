@@ -4,6 +4,7 @@ using Ecommerce_ASP.NET.DTOs.Discount;
 using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.User;
 using Ecommerce_ASP.NET.DTOs.UserDto;
+using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Models;
 using Ecommerce_ASP.NET.Models.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ namespace Ecommerce_ASP.NET.Manager
     {
         private readonly AppDbContext dbContext;
         private readonly UpdateProfile updateProfile;
-        
+        private readonly PasswordHasher passwordHasher;
         public UserManager(AppDbContext dbContext , UpdateProfile updateProfile)
         {
             this.dbContext = dbContext;
@@ -78,6 +79,67 @@ namespace Ecommerce_ASP.NET.Manager
             if (product == null) throw new KeyNotFoundException("Not Found Product!");
             return product.price;
         }
-
+        public void changePassword(int userId, string currentPassword, string newPassword)
+        {
+            var user =dbContext.Users.FirstOrDefault(u=> u.id==userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User not found");
+            if (!passwordHasher.Verify(currentPassword, user.passwordHash))
+                throw new Exception("Current password is incorrect");
+            user.passwordHash = passwordHasher.Hash(newPassword);
+            user.updated_at = DateTime.Now;
+            dbContext.SaveChanges();
+        }
+        public AddressDto GetAddress(int userId)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User not found");
+            
+            var address = dbContext.addresses.FirstOrDefault(a=>a.userId == userId);
+            if (address == null)
+                throw new KeyNotFoundException("Address not found");
+            return new AddressDto
+                {
+                id = address.id,
+                street = address.Street,
+                city = address.City,
+                postalCode = address.PostalCode,
+                building = address.building,
+                PhoneNumber = address.PhoneNumber
+            };
+        }
+        public void AddAddress(int userId, AddressDto addressDyo)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User not found");
+            var address = new Address
+            {
+                Street = addressDyo.street,
+                City = addressDyo.city,
+                PostalCode = addressDyo.postalCode,
+                building = addressDyo.building,
+                PhoneNumber = addressDyo.PhoneNumber,
+                userId = userId
+            };
+            dbContext.addresses.Add(address);
+            dbContext.SaveChanges();
+        }
+        public void UpdateAddress(int userId , AddressDto addressDto)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null)
+                throw new UnauthorizedAccessException("User not found");
+            var address = dbContext.addresses.FirstOrDefault(a => a.userId == userId);
+            if (address == null)
+                throw new KeyNotFoundException("Address not found");
+            address.Street = addressDto.street;
+            address.City = addressDto.city;
+            address.PostalCode = addressDto.postalCode;
+            address.building = addressDto.building;
+            address.PhoneNumber = addressDto.PhoneNumber;
+            dbContext.SaveChanges();
+        }
     }
 }

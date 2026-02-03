@@ -2,6 +2,7 @@
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Manager;
 using Ecommerce_ASP.NET.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -30,6 +31,7 @@ namespace Ecommerce_ASP.NET.Controllers
             authManager.RegisterDto(userdto, passwordHash);
             return Created("", "User registered successfully");
         }
+        [Authorize]
         [HttpPost("Login")]
         public async Task<IActionResult> Loging([FromBody] loginDto userdto)
         {
@@ -42,5 +44,29 @@ namespace Ecommerce_ASP.NET.Controllers
             return Ok( new { token });
 
         }
+        
+        [Authorize]
+        [HttpPost("ForgetPassword")]
+        public async Task<IActionResult> forgetPasswored([FromBody] loginDto userdto,string newPassword)
+        {
+             authManager.GetUserByEmail(userdto.email,newPassword);
+            return Ok("Password reset link sent to your email");
+        }
+        [Authorize]
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] loginDto userdto , string newPassword)
+        {
+            var token = jwtHelper.Authenticate(userdto);
+
+            if (token == null) return Unauthorized("Invalid email or password");
+            
+            if (string.IsNullOrEmpty(newPassword))
+                throw new ArgumentException("New password cannot be empty");
+            newPassword = newPassword.Trim();
+
+            authManager.ResetPassword(userdto.email,newPassword);
+            return Ok("Password reset successfully");
+        }
+       
     }
 }

@@ -1,4 +1,7 @@
-﻿using Ecommerce_ASP.NET.DTOs.Discount;
+﻿using Ecommerce_ASP.NET.DTOs.Address;
+using Ecommerce_ASP.NET.DTOs.Discount;
+using Ecommerce_ASP.NET.DTOs.Password;
+using Ecommerce_ASP.NET.DTOs.User;
 using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Manager;
 using Microsoft.AspNetCore.Authorization;
@@ -75,7 +78,65 @@ namespace Ecommerce_ASP.NET.Controllers
                 return NotFound("No Users Found!");
             return Ok(users);
         }
-        
+        [Authorize]
+        [HttpPut("ChangePassword")]
+        public IActionResult changePassword([FromBody] ChangePassword userdto)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            userManager.changePassword(userId, userdto.CurrentPassword, userdto.NewPassword);
+
+            return Ok("Password changed successfully");
+            return Ok();
+        }
+        [Authorize]
+        [HttpGet("GetPrice/{productId}")]
+        public IActionResult GetPrice(int productId)
+        {
+            var price = userManager.GetPrice(productId);
+            return Ok(price);
+        }
+        [Authorize]
+        [HttpGet("GetAddress")]
+        public IActionResult GetAddress()
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            var address = userManager.GetAddress(userId);
+            if(address == null)
+                return NotFound("No Address Found!");
+            return Ok(address);
+        }
+        [Authorize]
+        [HttpPost("AddAddress")]
+        public IActionResult addAddress([FromBody] AddressDto addressDto)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            userManager.AddAddress(userId, addressDto);
+            return Ok("Address added successfully");
+        }
+        [Authorize]
+        public IActionResult updateAddress([FromBody] AddressDto addressDto)
+        {
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized("No user id in token");
+            if (!int.TryParse(userIdClaim, out int userId))
+                return BadRequest("Invalid user id format");
+            userManager.UpdateAddress(userId, addressDto);
+            return Ok("Address added successfully");
+        }
     }
 }

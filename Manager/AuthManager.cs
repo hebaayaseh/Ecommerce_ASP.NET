@@ -29,6 +29,23 @@ namespace Ecommerce_ASP.NET.Manager
              _context.SaveChanges();
             
         }
-        
+        public void GetUserByEmail(string email,string newPassword)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.email == email);
+            if (user == null) throw new KeyNotFoundException("User not found");
+            if (string.IsNullOrEmpty(newPassword))
+                throw new ArgumentException("New password cannot be empty"); 
+            newPassword = newPassword.Trim();
+
+            user.passwordHash = passwordHasher.Hash(newPassword);
+            _context.SaveChanges();
+        }
+        public void ResetPassword(string email, string newPassword)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.email == email);
+            if (user == null) throw new KeyNotFoundException("User not found");
+            user.passwordHash = passwordHasher.Hash(newPassword);
+            _context.SaveChanges();
+        }
     }
 }
