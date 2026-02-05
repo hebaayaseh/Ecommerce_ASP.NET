@@ -14,6 +14,7 @@ namespace Ecommerce_ASP.NET.Models
         public User User { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
+        public ICollection<OrderTrackings> OrderTrackings { get; set; }
         public ICollection<OrderItems> OrderItems { get; set; }
         public OrderStatus status { get; set; }
         public Discount? discount { get; set; }

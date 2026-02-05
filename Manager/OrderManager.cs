@@ -3,6 +3,7 @@ using Ecommerce_ASP.NET.DTOs.AddOrderItem;
 using Ecommerce_ASP.NET.DTOs.Address;
 using Ecommerce_ASP.NET.DTOs.Cart;
 using Ecommerce_ASP.NET.DTOs.Discount;
+using Ecommerce_ASP.NET.DTOs.Order;
 using Ecommerce_ASP.NET.DTOs.Payment;
 using Ecommerce_ASP.NET.Models;
 using Ecommerce_ASP.NET.Models.Enums;
@@ -133,7 +134,7 @@ namespace Ecommerce_ASP.NET.Manager
                     if(discountDto!=null)
                     {
                         var discounts = dbContext.discounts.First(d => d.Code == discountDto.code);
-                        discounts.MaxUsage++;
+                        discounts.UsedCount++;
                     }
                     
                     var notification = new Notification
@@ -147,7 +148,7 @@ namespace Ecommerce_ASP.NET.Manager
                     
                     dbContext.SaveChanges();
                 }
-                else if (processPayment.processPayment(orders) == PaymentStatus.Completed)
+                else if (processPayment.processPayment(orders) != PaymentStatus.Completed)
                 {
                     orders.status = OrderStatus.Cancelled;
                     var notification = new Notification
@@ -169,13 +170,28 @@ namespace Ecommerce_ASP.NET.Manager
             };
 
         }
+        public List<AddOrderItems> GetMyOrder(int userId, int page, int pageSize)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
+            var orders=dbContext.Orders.Include(o=>o.OrderItems).Where(u=>u.UserId==userId).Skip((page - 1) * pageSize)
+                .Take(pageSize).
+                Select(o => new AddOrderItems
+                {
+                    id = o.id,
+                    quantity = o.OrderItems.Sum(oi => oi.quantity),
+                    PriceAtPurchase = o.totalPrice
+                }).ToList();
+            if(orders == null) throw new Exception("Not Found Orders");
+            return orders;
+        }
         public Object? GetOrderDetails(int userId,int orderId)
         {
             var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
             if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
             var orderdetails = dbContext.Orders.Where(u=>u.UserId == userId&&u.id==orderId)
                 .Include(o => o.OrderItems)
-                    .ThenInclude(oi => oi.Product)
+                .ThenInclude(oi => oi.Product)
                 .Include(o => o.address)
                 .Include(o => o.payment)
                 .Include(o => o.discount)
@@ -221,6 +237,35 @@ namespace Ecommerce_ASP.NET.Manager
                 .FirstOrDefault();
             if (orderdetails == null) return null;
             return orderdetails;
+        }
+        public OrderTrackingDto GetOrderTracking(int userId,int orderId)
+        {
+            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
+            if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
+            var order = dbContext.Orders.Where(u=>u.UserId==userId&&u.id==orderId).
+                Select(o => new OrderTrackingDto
+                {
+                    OrderId = o.id,
+                    CurrentStatus = o.status.ToString(),
+                    LastUpdated = o.updated_at,
+                    History = new List<TrackingHistoryDto>
+                    {
+                        new TrackingHistoryDto
+                        {
+                            status = "Order Placed",
+                            updateAt = o.created_at,
+                            Notes = "Your order has been placed successfully."
+                        },
+                        new TrackingHistoryDto
+                        {
+                            status = o.status.ToString(),
+                            updateAt = o.updated_at,
+                            Notes = $"Your order status is now {o.status}."
+                        }
+                    }
+                }).FirstOrDefault();
+            if (order == null) throw new Exception("Not Found Order");
+            return order;
         }
         public void CancelledOrder(int userId , int orderId)
         {

@@ -40,5 +40,8 @@ namespace Ecommerce_ASP.NET.Data
         public DbSet<Models.User> Users { get; set; }
         public DbSet<Models.Categories> Categories { get; set; }
         public DbSet<Models.WishlistItems> wishlist { get; set; }
-    }
+        public DbSet<Models.OrderTrackings> OrderTrackings { get; set; }
+        public DbSet<Models.TrackingHistories> TrackingHistories { get; set; }
+
+        }
 }
