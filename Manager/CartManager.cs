@@ -12,23 +12,21 @@ namespace Ecommerce_ASP.NET.Manager
             this.dbContext = dbContext;
             this.cartDto = cartDto;
         }
-        public CartDto? GetCart(int userId)
-        { 
-        
+        public List<CartDto> GetCart(int userId)
+        {
             var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
             if (user == null)
                 throw new UnauthorizedAccessException("User Not Found!");
-            var cartItems = dbContext.CartItems
+
+            return dbContext.CartItems
                 .Where(ci => ci.UserId == userId)
+                .Select(ci => new CartDto
+                {
+                    Id = ci.id,
+                    productId = ci.productId,
+                    quantity = ci.quantity
+                })
                 .ToList();
-            if (!cartItems.Any())
-                return null;
-            var firstCartItem = cartItems.First();
-            return new CartDto
-            {
-                productId = firstCartItem.productId,
-                quantity = firstCartItem.quantity
-            };
         }
         public CartDto? AddToCart(int userId, int productId, int quantity)
         {

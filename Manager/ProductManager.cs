@@ -14,12 +14,9 @@ namespace Ecommerce_ASP.NET.Manager
         private readonly CategoryDto categoryDto;
         
         private readonly AddProduct addProduct;
-        public ProductManager (AppDbContext dbContext , CategoryManager categoryManager , CategoryDto categoryDto  , AddProduct addProduct)
+        public ProductManager (AppDbContext dbContext )
         {
             this.dbContext = dbContext;
-            this.categoryDto = categoryDto;
-            
-            this.addProduct = addProduct;
         }
         public ICollection<Products>? AddExsistProduct(AddProduct productdto,int userId)
         {
@@ -76,6 +73,7 @@ namespace Ecommerce_ASP.NET.Manager
             var product = dbContext.Products.FirstOrDefault(p => p.id == productId);
             if (product == null) throw new KeyNotFoundException("Product Not Found!");
             product.stock = newSocket;
+            dbContext.SaveChanges();
         }
         public void UploadImages(int userId, int productId, IFormFile imageFile)
         {

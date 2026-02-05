@@ -13,6 +13,37 @@ namespace Ecommerce_ASP.NET.Manager
         {
             this.dbContext = dbContext;
         }
+        public List<DiscountDto>? GetAllDiscounts()
+        {
+            var discounts = dbContext.discounts
+                .Select(d=>new DiscountDto
+                {
+                    id = d.Id,
+                    code = d.Code,
+                    discountType = d.Type,
+                    amount = d.DiscountValue,
+                    ExpiryDate = d.EndDate,
+                    MaxUsage = d.MaxUsage,
+                    minimumOrderAmount = d.minimumOrderAmount,
+                })
+                .ToList();
+            return discounts;
+        }
+        public DiscountDto? GetById(int discountId)
+        {
+            var discount = dbContext.discounts.Where(d => d.Id == discountId)
+                .Select(d => new DiscountDto
+                {
+                    id = d.Id,
+                    code = d.Code,
+                    discountType = d.Type,
+                    amount = d.DiscountValue,
+                    ExpiryDate = d.EndDate,
+                    MaxUsage = d.MaxUsage,
+                    minimumOrderAmount = d.minimumOrderAmount,
+                }).FirstOrDefault();
+            return discount;
+        }
         public Discount AddDiscountCode(DiscountDto discountDto, int userId)
         {
             var admin = dbContext.Users.FirstOrDefault(u => u.role == UserRole.Admin && u.id == userId);

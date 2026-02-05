@@ -16,11 +16,12 @@ namespace Ecommerce_ASP.NET.Manager
         private readonly AppDbContext dbContext;
         private readonly UpdateProfile updateProfile;
         private readonly PasswordHasher passwordHasher;
-        public UserManager(AppDbContext dbContext , UpdateProfile updateProfile)
+        public UserManager(AppDbContext dbContext , UpdateProfile updateProfile,PasswordHasher passwordHasher)
         {
             this.dbContext = dbContext;
             this.updateProfile = updateProfile;
-            
+            this.passwordHasher = passwordHasher;
+
         }
         public User? GetProfile(int userId)
         {

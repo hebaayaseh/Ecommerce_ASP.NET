@@ -1,21 +1,5 @@
 [
   {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
-    "Method": "AddProductToWishlist",
-    "RelativePath": "AddToWishlist/{productId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "productId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.AuthController",
     "Method": "forgetPasswored",
     "RelativePath": "api/Auth/ForgetPassword",
@@ -313,6 +297,32 @@
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.DiscountsController",
+    "Method": "GetAllDiscounts",
+    "RelativePath": "api/Discounts/GetAllDiscounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.DiscountsController",
+    "Method": "GetDiscountById",
+    "RelativePath": "api/Discounts/GetDiscountById/{discountId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "discountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.DiscountsController",
     "Method": "UpdateDiscount",
     "RelativePath": "api/Discounts/UpdateDiscount",
     "HttpMethod": "POST",
@@ -330,7 +340,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
     "Method": "CancelledOrder",
-    "RelativePath": "api/Order/CancelledOrder",
+    "RelativePath": "api/Order/CancelledOrder/{orderId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -338,14 +348,14 @@
       {
         "Name": "orderId",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
-    "Method": "GetOrderDetails",
+    "Method": "Checkout",
     "RelativePath": "api/Order/Checkout",
     "HttpMethod": "POST",
     "IsController": true,
@@ -355,6 +365,53 @@
         "Name": "checkout",
         "Type": "Ecommerce_ASP.NET.DTOs.CheckoutDto.CheckoutRequestDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "DownloadInvoice",
+    "RelativePath": "api/Order/DownloadInvoice/{orderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetAllOrders",
+    "RelativePath": "api/Order/GetAllOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetMyOrders",
+    "RelativePath": "api/Order/GetMyOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -371,6 +428,99 @@
         "Name": "orderId",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetOrdersByStatus",
+    "RelativePath": "api/Order/GetOrdersByStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderStatus",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.OrderController",
+    "Method": "GetOrderTracking",
+    "RelativePath": "api/Order/GetOrderTracking/{orderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.PaymentsController",
+    "Method": "GetPaymentMethods",
+    "RelativePath": "api/Payments/GetPaymentMethods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
+    "Method": "AddExsistProduct",
+    "RelativePath": "api/Product/AddExistingProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "stock",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "image",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "category.description",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -532,57 +682,6 @@
       {
         "Name": "productName",
         "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Ecommerce_ASP.NET.Controllers.ProductController",
-    "Method": "AddExsistProduct",
-    "RelativePath": "api/Product/UpdateProduct",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "price",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "stock",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "image",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.Id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.name",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "category.description",
-        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -737,8 +836,24 @@
   },
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
+    "Method": "AddProductToWishlist",
+    "RelativePath": "api/WishlistItems/AddToWishlist/{productId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
     "Method": "GetWishlistItems",
-    "RelativePath": "GetWishlistItems",
+    "RelativePath": "api/WishlistItems/GetWishlistItems",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -748,7 +863,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
     "Method": "MoveToCart",
-    "RelativePath": "MoveToCart",
+    "RelativePath": "api/WishlistItems/MoveToCart",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -769,7 +884,7 @@
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.WishlistItemsController",
     "Method": "RemoveProductFromWishlist",
-    "RelativePath": "RemoveFromWishlist/{productId}",
+    "RelativePath": "api/WishlistItems/RemoveFromWishlist/{productId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

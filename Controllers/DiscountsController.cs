@@ -16,6 +16,25 @@ namespace Ecommerce_ASP.NET.Controllers
             this.discountsManager = discountsController;
         }
         [Authorize(Roles = "Admin")]
+        [HttpGet("GetAllDiscounts")]
+        public IActionResult GetAllDiscounts()
+        {
+            var discounts = discountsManager.GetAllDiscounts();
+            if (discounts == null || !discounts.Any())
+                return NotFound("No discounts found");
+            return Ok(discounts);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetDiscountById/{discountId:int}")]
+        public IActionResult GetDiscountById([FromRoute] int discountId)
+        {
+            var discount = discountsManager.GetById(discountId);
+            if (discount == null)
+                return NotFound("No discount found");
+            return Ok(discount);
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddDiscount")]
         public IActionResult AddDiscount([FromBody] DiscountDto discountDto)
         {

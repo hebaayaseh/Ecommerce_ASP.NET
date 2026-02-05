@@ -441,6 +441,41 @@
         }
       }
     },
+    "/api/Discounts/GetAllDiscounts": {
+      "get": {
+        "tags": [
+          "Discounts"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Discounts/GetDiscountById/{discountId}": {
+      "get": {
+        "tags": [
+          "Discounts"
+        ],
+        "parameters": [
+          {
+            "name": "discountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Discounts/AddDiscount": {
       "post": {
         "tags": [
@@ -557,6 +592,61 @@
         }
       }
     },
+    "/api/Order/GetMyOrders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/GetOrderTracking/{orderId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Order/GetOrderDetails/{orderId}": {
       "get": {
         "tags": [
@@ -580,7 +670,7 @@
         }
       }
     },
-    "/api/Order/CancelledOrder": {
+    "/api/Order/CancelledOrder/{orderId}": {
       "post": {
         "tags": [
           "Order"
@@ -603,7 +693,85 @@
         }
       }
     },
-    "/api/Product/UpdateProduct": {
+    "/api/Order/DownloadInvoice/{orderId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/GetAllOrders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order/GetOrdersByStatus": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Payments/GetPaymentMethods": {
+      "get": {
+        "tags": [
+          "Payments"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/AddExistingProduct": {
       "post": {
         "tags": [
           "Product"
@@ -684,7 +852,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Product/UpdateProduct": {
       "put": {
         "tags": [
           "Product"
@@ -872,15 +1042,17 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "required": [
-                  "imageFile"
-                ],
                 "type": "object",
                 "properties": {
                   "imageFile": {
                     "type": "string",
                     "format": "binary"
                   }
+                }
+              },
+              "encoding": {
+                "imageFile": {
+                  "style": "form"
                 }
               }
             }
@@ -956,25 +1128,15 @@
         "tags": [
           "Product"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "string"
-              }
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1227,7 +1389,7 @@
         }
       }
     },
-    "/GetWishlistItems": {
+    "/api/WishlistItems/GetWishlistItems": {
       "get": {
         "tags": [
           "WishlistItems"
@@ -1239,7 +1401,7 @@
         }
       }
     },
-    "/AddToWishlist/{productId}": {
+    "/api/WishlistItems/AddToWishlist/{productId}": {
       "post": {
         "tags": [
           "WishlistItems"
@@ -1262,7 +1424,7 @@
         }
       }
     },
-    "/RemoveFromWishlist/{productId}": {
+    "/api/WishlistItems/RemoveFromWishlist/{productId}": {
       "delete": {
         "tags": [
           "WishlistItems"
@@ -1285,7 +1447,7 @@
         }
       }
     },
-    "/MoveToCart": {
+    "/api/WishlistItems/MoveToCart": {
       "post": {
         "tags": [
           "WishlistItems"
@@ -1542,6 +1704,17 @@
           }
         },
         "additionalProperties": false
+      },
+      "OrderStatus": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "format": "int32"
       },
       "PaymentDto": {
         "type": "object",

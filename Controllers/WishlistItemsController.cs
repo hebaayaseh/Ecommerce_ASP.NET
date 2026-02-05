@@ -1,9 +1,7 @@
 ﻿using Ecommerce_ASP.NET.Manager;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace Ecommerce_ASP.NET.Controllers
 {

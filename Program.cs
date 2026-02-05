@@ -6,9 +6,9 @@ using Ecommerce_ASP.NET.DTOs.Category;
 using Ecommerce_ASP.NET.DTOs.Discount;
 using Ecommerce_ASP.NET.DTOs.Product;
 using Ecommerce_ASP.NET.DTOs.UserDto;
-using Ecommerce_ASP.NET.Ecommerce_ASP.NET.Filters;
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Manager;
+using Ecommerce_ASP.NET.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -52,7 +52,6 @@ builder.Services.AddSwaggerGen(c =>
 
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
-    c.OperationFilter<FileUploadOperationFilter>();
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -86,7 +85,6 @@ builder.Services.AddScoped<ProductManager>();
 builder.Services.AddScoped<CategoryManager>();
 builder.Services.AddScoped<CartManager>();
 builder.Services.AddScoped<OrderManager>();
-builder.Services.AddScoped<PasswordHasher>();
 builder.Services.AddScoped<WishlistItemsManager>();
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<UserManager>();
@@ -97,11 +95,12 @@ builder.Services.AddScoped<CartDto>();
 builder.Services.AddScoped<AddressDto>();
 builder.Services.AddScoped<DiscountManager>();
 builder.Services.AddScoped<DiscountUserDto>();
-builder.Services.AddScoped<AddOrderItems>();
+builder.Services.AddScoped<OrderItemsDto>();
 builder.Services.AddScoped<BankApprove>();
-builder.Services.AddScoped<ProcessPayment>();
+builder.Services.AddScoped<PaymentManager>();
 builder.Services.AddScoped<PasswordHasher>();
-
+builder.Services.AddScoped<OrderTrackings>();
+builder.Services.AddScoped<TrackingHistories>();
 
 var app = builder.Build();
 

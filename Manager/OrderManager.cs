@@ -3,6 +3,7 @@ using Ecommerce_ASP.NET.DTOs.AddOrderItem;
 using Ecommerce_ASP.NET.DTOs.Address;
 using Ecommerce_ASP.NET.DTOs.Cart;
 using Ecommerce_ASP.NET.DTOs.Discount;
+using Ecommerce_ASP.NET.DTOs.Invoice;
 using Ecommerce_ASP.NET.DTOs.Order;
 using Ecommerce_ASP.NET.DTOs.Payment;
 using Ecommerce_ASP.NET.Models;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Linq.Expressions;
 using System.Net;
 using System.Transactions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Transaction = System.Transactions.Transaction;
 
@@ -21,14 +23,12 @@ namespace Ecommerce_ASP.NET.Manager
     {
         private readonly AppDbContext dbContext;
         private readonly CartManager cartManager;
-        private readonly AddOrderItems addOrderItems;
-        private readonly ProcessPayment processPayment;
+        private readonly PaymentManager processPayment;
         private readonly DiscountManager discountManager;
-        public OrderManager(AppDbContext dbContext, CartManager cartManager, AddOrderItems addOrderItems, ProcessPayment processPayment, DiscountManager discountManager)
+        public OrderManager(AppDbContext dbContext, CartManager cartManager, PaymentManager processPayment, DiscountManager discountManager)
         {
             this.dbContext = dbContext;
             this.cartManager = cartManager;
-            this.addOrderItems = addOrderItems;
             this.processPayment = processPayment;
             this.discountManager = discountManager;
         }
@@ -38,8 +38,7 @@ namespace Ecommerce_ASP.NET.Manager
             using var transaction = dbContext.Database.BeginTransaction();
             try
             {
-                var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
-                if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
+                
                 var cartItems = dbContext.CartItems
                 .Include(ci => ci.product)
                 .Where(ci => ci.UserId == userId)
@@ -170,13 +169,12 @@ namespace Ecommerce_ASP.NET.Manager
             };
 
         }
-        public List<AddOrderItems> GetMyOrder(int userId, int page, int pageSize)
+        public List<OrderItemsDto> GetMyOrder(int userId, int page, int pageSize)
         {
-            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
-            if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
+            
             var orders=dbContext.Orders.Include(o=>o.OrderItems).Where(u=>u.UserId==userId).Skip((page - 1) * pageSize)
                 .Take(pageSize).
-                Select(o => new AddOrderItems
+                Select(o => new OrderItemsDto
                 {
                     id = o.id,
                     quantity = o.OrderItems.Sum(oi => oi.quantity),
@@ -187,8 +185,7 @@ namespace Ecommerce_ASP.NET.Manager
         }
         public Object? GetOrderDetails(int userId,int orderId)
         {
-            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
-            if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
+           
             var orderdetails = dbContext.Orders.Where(u=>u.UserId == userId&&u.id==orderId)
                 .Include(o => o.OrderItems)
                 .ThenInclude(oi => oi.Product)
@@ -240,37 +237,49 @@ namespace Ecommerce_ASP.NET.Manager
         }
         public OrderTrackingDto GetOrderTracking(int userId,int orderId)
         {
-            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
-            if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
-            var order = dbContext.Orders.Where(u=>u.UserId==userId&&u.id==orderId).
-                Select(o => new OrderTrackingDto
+            var order = dbContext.Orders.Include(o=>o.OrderTrackings).Where(o => o.id == orderId && o.UserId == userId)
+                .Select(o => new OrderTrackingDto
                 {
-                    OrderId = o.id,
-                    CurrentStatus = o.status.ToString(),
-                    LastUpdated = o.updated_at,
-                    History = new List<TrackingHistoryDto>
+                    OrderId=o.id,
+                    CurrentStatus=o.status.ToString(),
+                    LastUpdated=o.updated_at,
+                    History=o.OrderTrackings.Select(ot=>new TrackingHistoryDto
                     {
-                        new TrackingHistoryDto
-                        {
-                            status = "Order Placed",
-                            updateAt = o.created_at,
-                            Notes = "Your order has been placed successfully."
-                        },
-                        new TrackingHistoryDto
-                        {
-                            status = o.status.ToString(),
-                            updateAt = o.updated_at,
-                            Notes = $"Your order status is now {o.status}."
-                        }
-                    }
-                }).FirstOrDefault();
+                        status=ot.CurrentStatus.ToString(),
+                        updateAt=ot.LastUpdated,
+                    }).ToList()
+                })
+                .FirstOrDefault();
             if (order == null) throw new Exception("Not Found Order");
             return order;
         }
+        public InvoiceDto DownloadInvoice(int userId,int orderId)
+        {
+            var order = dbContext.Orders
+        .Include(o => o.OrderItems)
+        .FirstOrDefault(o => o.id == orderId && o.UserId == userId);
+
+            if (order == null)
+                throw new KeyNotFoundException("Order not found");
+
+            return new InvoiceDto
+            {
+                OrderId = order.id,
+                OrderDate = order.created_at,
+                TotalPrice = order.totalPrice,
+                Items = order.OrderItems.Select(oi => new InvoiceItemDto
+                {
+                    ProductId = oi.ProductId,
+                    Quantity = oi.quantity,
+                    Price = oi.price,
+                    subTotal = (double)(oi.quantity * oi.price),
+                    ProductName = oi.Product.name
+                }).ToList()
+            };
+        }
         public void CancelledOrder(int userId , int orderId)
         {
-            var user = dbContext.Users.FirstOrDefault(u => u.id == userId);
-            if (user == null) throw new UnauthorizedAccessException("User Not Found , Please Login!");
+            
             var order = dbContext.Orders.Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
                     .Include(o => o.payment)
@@ -309,6 +318,74 @@ namespace Ecommerce_ASP.NET.Manager
                 transaction.Rollback();
                 throw;
             }
+        }
+        public List<OrderDto> GetAllOrder()
+        {
+            return dbContext.Orders
+                .Include(o => o.OrderItems)
+                .Include(o => o.OrderTrackings)
+                .Select(o => new OrderDto
+                {
+                    UserId = o.UserId,
+                    id = o.id,
+                    totalPrice = o.totalPrice,
+                    status = o.status.ToString(),
+                    discountId = o.discountId,
+                    AddressId = o.AddressId,
+
+                    OrderItems = o.OrderItems.Select(oi => new OrderItemsDto
+                    {
+                        id = oi.id,
+                        quantity = oi.quantity,
+                        PriceAtPurchase = oi.price,
+                        ProductId = oi.ProductId
+                    }).ToList(),
+
+                    TrackingItems = o.OrderTrackings
+                        .OrderBy(t => t.LastUpdated)
+                        .Select(t => new OrderTrackingDto
+                        {
+                            CurrentStatus = t.CurrentStatus.ToString(),
+                            LastUpdated = t.LastUpdated
+                        }).ToList()
+                })
+                .ToList();
+        }
+
+        public List<OrderDto>? GetOrdersByStatus(OrderStatus orderStatus)
+        {
+            var order = dbContext.Orders
+                .Include(o => o.OrderItems)
+                .Include(t => t.OrderTrackings)
+                .Where(o => o.status == orderStatus)
+                .Select(o => new OrderDto
+                {
+                    UserId = o.UserId,
+                    id = o.id,
+                    totalPrice = o.totalPrice,
+                    status = o.status.ToString(),
+                    discountId = o.discountId,
+                    AddressId = o.AddressId,
+
+                    OrderItems = o.OrderItems.Select(oi => new OrderItemsDto
+                    {
+                        id = oi.id,
+                        quantity = oi.quantity,
+                        PriceAtPurchase = oi.price,
+                        ProductId = oi.ProductId
+                    }).ToList(),
+
+                    TrackingItems = o.OrderTrackings
+                        .OrderBy(t => t.LastUpdated)
+                        .Select(t => new OrderTrackingDto
+                        {
+                            CurrentStatus = t.CurrentStatus.ToString(),
+                            LastUpdated = t.LastUpdated
+                        }).ToList()
+                })
+                .ToList();
+            if (!order.Any()) return null;
+            return order;
         }
     }
 }

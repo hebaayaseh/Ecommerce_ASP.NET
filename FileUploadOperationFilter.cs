@@ -2,9 +2,6 @@
 {
     using Microsoft.OpenApi.Models;
     using Swashbuckle.AspNetCore.SwaggerGen;
-
-    namespace Ecommerce_ASP.NET.Filters
-    {
         public class FileUploadOperationFilter : IOperationFilter
         {
             public void Apply(OpenApiOperation operation, OperationFilterContext context)
@@ -41,4 +38,4 @@
             }
         }
     }
-}
+

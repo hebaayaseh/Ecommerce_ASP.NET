@@ -19,7 +19,7 @@ namespace Ecommerce_ASP.NET.Controllers
             this.productManager = productManager;
         }
         [Authorize(Roles = "Admin")]
-        [HttpPost("UpdateProduct")]
+        [HttpPost("AddExistingProduct")]
         public IActionResult AddExsistProduct([FromForm] AddProduct productdto)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -73,6 +73,7 @@ namespace Ecommerce_ASP.NET.Controllers
             if (!int.TryParse(userIdClaim, out int userId))
                 return BadRequest("Invalid user id format");
              productManager.DeleteProduct(productId, userId);
+           
             return NoContent();
         }
         [Authorize(Roles = "Admin")]
@@ -147,7 +148,7 @@ namespace Ecommerce_ASP.NET.Controllers
        
         [Authorize]
         [HttpGet("SearchProductByName")]
-        public IActionResult SearchProductByName([FromBody]string productName)
+        public IActionResult SearchProductByName([FromQuery]string productName)
         {
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userIdClaim == null)

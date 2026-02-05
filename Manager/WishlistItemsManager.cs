@@ -39,6 +39,8 @@ namespace Ecommerce_ASP.NET.Manager
                 productId = productId,
                 AddedAt = DateTime.UtcNow
             };
+            dbContext.wishlist.Add(WishlistItems);
+            dbContext.SaveChanges();
         }
         public void RemoveProduct(int userId,int productId)
         {
