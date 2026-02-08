@@ -25,6 +25,7 @@ namespace Ecommerce_ASP.NET.Models
         public ICollection<CartItems> cart { get; set; }
         public ICollection<Orders> orders { get; set; }
         public ICollection<Address>? addresses { get; set; }
+        public ICollection<Payment> payments { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
         

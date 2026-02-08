@@ -1,7 +1,10 @@
 ﻿using Ecommerce_ASP.NET.Data;
 using Ecommerce_ASP.NET.DTOs.Dashboard;
+using Ecommerce_ASP.NET.DTOs.Order;
 using Ecommerce_ASP.NET.DTOs.SalesStatisticsDto;
 using Ecommerce_ASP.NET.Models.Enums;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 
 namespace Ecommerce_ASP.NET.Manager
@@ -44,11 +47,11 @@ namespace Ecommerce_ASP.NET.Manager
 
             return orderStatus;
         }
-        public List<ProductsByCategory> productsByCategories()
+        public List<ProductsByCategoryDto> productsByCategories()
         {
             var productsByCategory = dbContext.Products
                 .GroupBy(p => new { p.categoryId, p.category.name})
-                .Select(p=>new ProductsByCategory
+                .Select(p=>new ProductsByCategoryDto
                 {
                     categoryName=p.Key.ToString(),
                     productcount=p.Count()
@@ -71,6 +74,32 @@ namespace Ecommerce_ASP.NET.Manager
                 averageOrderValue = averageOrderValue,
                 
             };
+        }
+        public List<GetTopSellingProductsDto>? GetTopSellingProducts(int limit = 10)
+        {
+            var TopSellingProducts = dbContext.OrderItems
+                .Where(o=>o.Order.status==OrderStatus.Delivered)
+                .GroupBy(p=>p.ProductId)
+                .Select(p=> new GetTopSellingProductsDto{
+                 Quantity=p.Sum(q=>q.quantity),
+                 ProductId=p.Key,
+                });
+            var topProducts = TopSellingProducts.OrderByDescending(p => p.Quantity).Take(limit).ToList();
+            return topProducts;
+        }
+        public List<GetTopCustomersDto> GetTopCustomers(int limit = 10)
+        {
+            var topCustomers = dbContext.payments
+                .Where(p => p.Status == PaymentStatus.Completed)
+                .GroupBy(u=>u.UserId)
+                .Select(u=> new GetTopCustomersDto
+                {
+                    CustomerId=u.Key.id,
+                    CustomerName=u.Key.f_name,
+                    TotalSpent=u.Sum(o=>o.orders.Where(s=>s.status==OrderStatus.Delivered).Sum(p=>p.payment.Amount))
+                }).OrderByDescending(c=>c.TotalSpent).Take(limit).ToList();
+            return topCustomers;
+
         }
     }
 }

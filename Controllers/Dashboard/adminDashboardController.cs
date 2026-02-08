@@ -62,5 +62,16 @@ namespace Ecommerce_ASP.NET.Controllers.Dashboard
             }
             return Ok(salesStatistics);
         }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("TopSellingProducts")]
+        public IActionResult TopSellingProducts()
+        {
+            var topSellingProducts = adminDashboardManager.GetTopSellingProducts();
+            if (topSellingProducts == null || !topSellingProducts.Any())
+            {
+                return NotFound("No data found for top-selling products.");
+            }
+            return Ok(topSellingProducts);
+        }
     }
 }

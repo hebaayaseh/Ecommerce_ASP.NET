@@ -15,5 +15,8 @@ namespace Ecommerce_ASP.NET.Models
         public decimal Amount { get; set; }
         public DateTime PaymentDate { get; set; }
         public PaymentStatus Status { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }
