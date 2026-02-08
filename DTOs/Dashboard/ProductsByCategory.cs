@@ -2,5 +2,7 @@
 {
     public class ProductsByCategory
     {
+        public int productcount { get; set; }
+        public string categoryName { get; set; }
     }
 }

@@ -2,5 +2,7 @@
 {
     public class OrderByStatusDto
     {
+        public int count { get; set; }
+        public string status { get; set; }
     }
 }

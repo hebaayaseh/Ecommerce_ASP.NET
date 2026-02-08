@@ -1,6 +1,8 @@
 ﻿using Ecommerce_ASP.NET.Data;
 using Ecommerce_ASP.NET.DTOs.Dashboard;
-using Ecommerce_ASP.NET.DTOs.Order;
+using Ecommerce_ASP.NET.DTOs.SalesStatisticsDto;
+using Ecommerce_ASP.NET.Models.Enums;
+
 
 namespace Ecommerce_ASP.NET.Manager
 {
@@ -13,6 +15,62 @@ namespace Ecommerce_ASP.NET.Manager
             this.dbContext = dbContext;
             this.adminDashboardDto = adminDashboardDto;
         }
-        
+        public AdminDashboardDto GetOverView()
+        {
+            int totalUsers = dbContext.Users.Count();
+            var totalProducts=dbContext.Products.Count();
+            int totalOrders=dbContext.Orders.Where(o=>o.status==OrderStatus.Delivered).Count();
+            decimal totalRevenue = dbContext.payments.Where(p=>p.Status==PaymentStatus.Completed).Sum(p => p.Amount);
+            decimal averageOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+            
+            return new AdminDashboardDto
+            {
+                TotalUsers = totalUsers,
+                TotalProducts = totalProducts,
+                TotalOrders = totalOrders,
+                TotalRevenue = totalRevenue,
+                AverageOrderValue = averageOrderValue,
+                
+            };
+        }
+        public List<OrderByStatusDto> OrderByStatus()
+        {
+            var orderStatus = dbContext.Orders.GroupBy(s => s.status)
+                .Select(s => new OrderByStatusDto
+                {
+                    status = s.Key.ToString(),
+                    count = s.Count()
+                }).ToList();
+
+            return orderStatus;
+        }
+        public List<ProductsByCategory> productsByCategories()
+        {
+            var productsByCategory = dbContext.Products
+                .GroupBy(p => new { p.categoryId, p.category.name})
+                .Select(p=>new ProductsByCategory
+                {
+                    categoryName=p.Key.ToString(),
+                    productcount=p.Count()
+                }).ToList();
+            return productsByCategory;
+        }
+        public SalesStatisticsDto SalesStatistics(DateTime from , DateTime to)
+        {
+            var fromDate = from.Date;
+            var toDate = to.Date.AddDays(1).AddTicks(-1);
+            var totalRevenue = dbContext.payments.Where(d=>d.PaymentDate>=fromDate&&d.PaymentDate<=toDate&&d.Status==PaymentStatus.Completed).Sum(p => p.Amount);
+            var totalOrders =dbContext.Orders.Where(o=>o.created_at>=fromDate&&o.created_at<=toDate&&o.status==OrderStatus.Delivered).Count();
+            var averageOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+            return new SalesStatisticsDto
+            {
+                from = fromDate,
+                to = toDate,
+                totalRevenue = totalRevenue,
+                totalOrders = totalOrders,
+                averageOrderValue = averageOrderValue,
+                
+            };
+        }
     }
 }
