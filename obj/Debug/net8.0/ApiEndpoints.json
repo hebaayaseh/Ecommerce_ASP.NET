@@ -1,8 +1,88 @@
 [
   {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetCategoryDistribution",
+    "RelativePath": "api/adminDashboard/GetCategoryDistribution",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetLowStockProducts",
+    "RelativePath": "api/adminDashboard/GetLowStockProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetOrdersChartDaily",
+    "RelativePath": "api/adminDashboard/GetOrdersChartDaily",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetOrdersChartMonthly",
+    "RelativePath": "api/adminDashboard/GetOrdersChartMonthly",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
     "Method": "GetOverView",
     "RelativePath": "api/adminDashboard/GetOverView",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetRecentOrders",
+    "RelativePath": "api/adminDashboard/GetRecentOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetRevenueChartDaily",
+    "RelativePath": "api/adminDashboard/GetRevenueChartDaily",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetRevenueChartMonthly",
+    "RelativePath": "api/adminDashboard/GetRevenueChartMonthly",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "GetTopCustomers",
+    "RelativePath": "api/adminDashboard/GetTopCustomers",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -48,6 +128,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Dashboard.adminDashboardController",
+    "Method": "TopSellingProducts",
+    "RelativePath": "api/adminDashboard/TopSellingProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -384,6 +474,162 @@
         "Name": "discountDto",
         "Type": "Ecommerce_ASP.NET.DTOs.Discount.DiscountDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "DeleteAllNotifications",
+    "RelativePath": "api/Notifications/DeleteAllNotifications",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "DeleteNotification",
+    "RelativePath": "api/Notifications/DeleteNotification/{notificationId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "GetAllNotifications",
+    "RelativePath": "api/Notifications/GetAllNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "GetUnreadNotifications",
+    "RelativePath": "api/Notifications/GetUnreadNotifications",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "GetUnreadNotificationsCount",
+    "RelativePath": "api/Notifications/GetUnreadNotificationsCount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "MarkAllAsRead",
+    "RelativePath": "api/Notifications/MarkAllAsRead",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "MarkAsRead",
+    "RelativePath": "api/Notifications/MarkAsRead/{notificationId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "MarkAsUnread",
+    "RelativePath": "api/Notifications/MarkAsUnread/{notificationId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "SendNotificationToAllUser",
+    "RelativePath": "api/Notifications/SendNotificationToAllUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "message",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.NotificationsController",
+    "Method": "SendNotificationToUser",
+    "RelativePath": "api/Notifications/SendNotificationToUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "message",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -897,6 +1143,121 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "AutoComplete",
+    "RelativePath": "api/Search/AutoComplete",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetNewestProduct",
+    "RelativePath": "api/Search/GetNewestProduct",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetProductsByCategoryName",
+    "RelativePath": "api/Search/GetProductsByCategoryName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetProductsByName",
+    "RelativePath": "api/Search/GetProductsByName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetProductsByPriceRange",
+    "RelativePath": "api/Search/GetProductsByPriceRange",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "minPrice",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "maxPrice",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetProductsPriceAsc",
+    "RelativePath": "api/Search/GetProductsPriceAsc",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetProductsPriceDesc",
+    "RelativePath": "api/Search/GetProductsPriceDesc",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
+    "Method": "GetProductSuggestions",
+    "RelativePath": "api/Search/GetProductSuggestions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.UserController",
     "Method": "addAddress",
     "RelativePath": "api/User/AddAddress",
@@ -1002,6 +1363,75 @@
         "Name": "userdto",
         "Type": "Ecommerce_ASP.NET.DTOs.UserDto.UpdateProfile",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserManagment.UserManagmentController",
+    "Method": "DeletUserById",
+    "RelativePath": "api/UserManagment/DeletUserById/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserManagment.UserManagmentController",
+    "Method": "GetAllUser",
+    "RelativePath": "api/UserManagment/GetAllUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserManagment.UserManagmentController",
+    "Method": "GetUserById",
+    "RelativePath": "api/UserManagment/GetUserById/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.UserManagment.UserManagmentController",
+    "Method": "SearchUser",
+    "RelativePath": "api/UserManagment/SearchUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "str",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
