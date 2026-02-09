@@ -84,6 +84,82 @@ namespace Ecommerce_ASP.NET.Controllers.Dashboard
             }
             return Ok(topCustomers);
         }
-
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetRevenueChartMonthly")]
+        public IActionResult GetRevenueChartMonthly()
+        {
+            var revenueChart = adminDashboardManager.GetRevenueMonthlyChart();
+            if (revenueChart == null || !revenueChart.Any())
+            {
+                return NotFound("No data found for monthly revenue chart.");
+            }
+            return Ok(revenueChart);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetRevenueChartDaily")]
+        public IActionResult GetRevenueChartDaily()
+        {
+            var revenueChart = adminDashboardManager.GetRevenueChartDaily();
+            if (revenueChart == null || !revenueChart.Any())
+            {
+                return NotFound("No data found for daily revenue chart.");
+            }
+            return Ok(revenueChart);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetOrdersChartMonthly")]
+        public IActionResult GetOrdersChartMonthly()
+        {
+            var ordersChart = adminDashboardManager.GetOrdersChartMontly;
+            if (ordersChart == null)
+            {
+                return NotFound("No data found for monthly orders chart.");
+            }
+            return Ok(ordersChart);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetOrdersChartDaily")]
+        public IActionResult GetOrdersChartDaily()
+        {
+            var ordersChart = adminDashboardManager.GetOrdersChartDaily;
+            if (ordersChart == null)
+            {
+                return NotFound("No data found for daily orders chart.");
+            }
+            return Ok(ordersChart);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetCategoryDistribution")]
+        public IActionResult GetCategoryDistribution()
+        {
+            var categoryDistribution = adminDashboardManager.GetCategoryDistribution();
+            if (categoryDistribution == null)
+            {
+                return NotFound("No data found for category distribution.");
+            }
+            return Ok(categoryDistribution);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetRecentOrders")]
+        public IActionResult GetRecentOrders()
+        {
+            var recentOrders = adminDashboardManager.GetRecentOrders();
+            if (recentOrders == null || !recentOrders.Any())
+            {
+                return NotFound("No data found for recent orders.");
+            }
+            return Ok(recentOrders);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetLowStockProducts")]
+        public IActionResult GetLowStockProducts()
+        {
+            var lowStockProducts = adminDashboardManager.GetLowStockProducts();
+            if (lowStockProducts == null || !lowStockProducts.Any())
+            {
+                return NotFound("No data found for low stock products.");
+            }
+            return Ok(lowStockProducts);
+        }
     }
 }

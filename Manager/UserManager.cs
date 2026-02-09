@@ -1,13 +1,10 @@
 ﻿using Ecommerce_ASP.NET.Data;
 using Ecommerce_ASP.NET.DTOs.Address;
-using Ecommerce_ASP.NET.DTOs.Discount;
-using Ecommerce_ASP.NET.DTOs.Product;
-using Ecommerce_ASP.NET.DTOs.User;
 using Ecommerce_ASP.NET.DTOs.UserDto;
 using Ecommerce_ASP.NET.Helpers;
 using Ecommerce_ASP.NET.Models;
 using Ecommerce_ASP.NET.Models.Enums;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Ecommerce_ASP.NET.Manager
 {

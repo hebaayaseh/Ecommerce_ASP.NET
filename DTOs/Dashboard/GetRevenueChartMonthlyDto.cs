@@ -1,6 +1,8 @@
 ﻿namespace Ecommerce_ASP.NET.DTOs.Dashboard
 {
-    public class GetRevenueChartDto
+    public class GetRevenueChartMonthlyDto
     {
+        public decimal totalRevenue { get; set; }
+        public DateTime month { get; set; }
     }
 }

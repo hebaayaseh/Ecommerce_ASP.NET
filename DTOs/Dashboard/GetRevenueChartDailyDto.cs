@@ -2,5 +2,7 @@
 {
     public class GetRevenueChartDailyDto
     {
+        public decimal totalRevenue { get; set; }
+        public DateTime day { get; set; }
     }
 }

@@ -91,6 +91,8 @@ builder.Services.AddScoped<WishlistItemsManager>();
 builder.Services.AddScoped<ReviewManager>();
 builder.Services.AddScoped<DiscountManager>();
 builder.Services.AddScoped<PaymentManager>();
+builder.Services.AddScoped<UserManagmentManeger>();
+builder.Services.AddScoped<NotificationManager>();
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<UserManager>();
 builder.Services.AddScoped<UpdateProfile>();

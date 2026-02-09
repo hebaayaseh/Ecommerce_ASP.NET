@@ -9,13 +9,7 @@ using Ecommerce_ASP.NET.DTOs.Payment;
 using Ecommerce_ASP.NET.Models;
 using Ecommerce_ASP.NET.Models.Enums;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.UserSecrets;
-using System.Linq.Expressions;
-using System.Net;
-using System.Transactions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using Transaction = System.Transactions.Transaction;
+
 
 namespace Ecommerce_ASP.NET.Manager
 {
