@@ -4,6 +4,7 @@ using Ecommerce_ASP.NET.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce_ASP.NET.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260209084301_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -310,18 +313,18 @@ namespace Ecommerce_ASP.NET.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("orderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("orderId")
+                    b.Property<int>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsersId");
-
                     b.HasIndex("orderId")
                         .IsUnique();
+
+                    b.HasIndex("userId");
 
                     b.ToTable("payments");
                 });
@@ -595,15 +598,15 @@ namespace Ecommerce_ASP.NET.Migrations
 
             modelBuilder.Entity("Ecommerce_ASP.NET.Models.Payment", b =>
                 {
-                    b.HasOne("Ecommerce_ASP.NET.Models.User", "users")
-                        .WithMany("payments")
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Ecommerce_ASP.NET.Models.Orders", "orders")
                         .WithOne("payment")
                         .HasForeignKey("Ecommerce_ASP.NET.Models.Payment", "orderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ecommerce_ASP.NET.Models.User", "users")
+                        .WithMany("payments")
+                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

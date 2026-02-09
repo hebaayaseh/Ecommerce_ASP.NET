@@ -89,14 +89,13 @@ namespace Ecommerce_ASP.NET.Manager
         }
         public List<GetTopCustomersDto> GetTopCustomers(int limit = 10)
         {
-            var topCustomers = dbContext.payments
+            var topCustomers = dbContext.payments.Include(o=>o.orders)
                 .Where(p => p.Status == PaymentStatus.Completed)
-                .GroupBy(u=>u.UserId)
+                .GroupBy(u=>u.orders.UserId)
                 .Select(u=> new GetTopCustomersDto
                 {
-                    CustomerId=u.Key.id,
-                    CustomerName=u.Key.f_name,
-                    TotalSpent=u.Sum(o=>o.orders.Where(s=>s.status==OrderStatus.Delivered).Sum(p=>p.payment.Amount))
+                    CustomerId=u.Key,
+                    TotalSpent=u.Sum((p=>p.Amount))
                 }).OrderByDescending(c=>c.TotalSpent).Take(limit).ToList();
             return topCustomers;
 

@@ -73,5 +73,17 @@ namespace Ecommerce_ASP.NET.Controllers.Dashboard
             }
             return Ok(topSellingProducts);
         }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetTopCustomers")]
+        public IActionResult GetTopCustomers()
+        {
+            var topCustomers = adminDashboardManager.GetTopCustomers();
+            if (topCustomers == null || !topCustomers.Any())
+            {
+                return NotFound("No data found for customer demographics.");
+            }
+            return Ok(topCustomers);
+        }
+
     }
 }
