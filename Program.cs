@@ -97,6 +97,7 @@ builder.Services.AddScoped<UserManagmentManeger>();
 builder.Services.AddScoped<NotificationManager>();
 builder.Services.AddScoped<InventoryManagementManager>();
 builder.Services.AddScoped<ReportManager>();
+builder.Services.AddScoped<ProductPerformanceReportManager>();
 builder.Services.AddScoped<ExportSalesReportToExcel>();
 builder.Services.AddScoped<JwtHelper>();
 builder.Services.AddScoped<UserManager>();
