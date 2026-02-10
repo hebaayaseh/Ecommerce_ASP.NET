@@ -1,3 +1,12 @@
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.csproj.AssemblyReference.cache
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.AssemblyInfoInputs.cache
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.AssemblyInfo.cs
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.csproj.CoreCompileInputs.cache
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.sourcelink.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\appsettings.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Ecommerce_ASP.NET.staticwebassets.endpoints.json
@@ -9,6 +18,9 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Castle.Core.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Duende.IdentityModel.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Duende.IdentityServer.Storage.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\EPPlus.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\EPPlus.Core.Extensions.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\EPPlus.Interfaces.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Humanizer.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.AspNetCore.DataProtection.Abstractions.dll
@@ -24,6 +36,8 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Json.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
@@ -36,6 +50,7 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\MySqlConnector.dll
@@ -50,6 +65,8 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -102,15 +119,7 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.csproj.AssemblyReference.cache
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.AssemblyInfoInputs.cache
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.AssemblyInfo.cs
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.csproj.CoreCompileInputs.cache
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.sourcelink.json
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -119,10 +128,10 @@ C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerc.7E0B31A7.Up2Date
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\refint\Ecommerce_ASP.NET.dll
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.pdb
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\Ecommerce_ASP.NET.genruntimeconfig.cache
 C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\ref\Ecommerce_ASP.NET.dll
-C:\Users\hebah\source\repos\Ecommerce_ASP.NET\Ecommerce_ASP.NET\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

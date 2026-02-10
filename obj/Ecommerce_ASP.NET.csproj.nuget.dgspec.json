@@ -54,6 +54,18 @@
               "target": "Package",
               "version": "[7.4.3, )"
             },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[8.4.2, )"
+            },
+            "EPPlus.Core.Extensions": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "EPPlus.Interfaces": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.22, )"

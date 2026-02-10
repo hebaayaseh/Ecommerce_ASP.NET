@@ -4,7 +4,6 @@ using Ecommerce_ASP.NET.Manager;
 using Ecommerce_ASP.NET.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace Ecommerce_ASP.NET.Controllers
 {

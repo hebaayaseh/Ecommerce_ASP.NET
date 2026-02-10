@@ -74,17 +74,6 @@ namespace Ecommerce_ASP.NET.Manager
             }).FirstOrDefault();
             return product;
         }
-        public NotificationDto CheckStockAlert(,int adminId,int productId)
-        {
-            var product = dbContext.Products.Where(p => p.id == productId).FirstOrDefault();
-            if (product == null) return null;
-            if(product.stock<=5)
-            {
-                notificationManager.SendNotificationToUser(adminId,
-                    "Stock is low for product " ,NotificationType.)
-                
-            }
-
-        }
+        
     }
 }

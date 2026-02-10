@@ -1143,6 +1143,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Ecommerce_ASP.NET.Controllers.Report.SalesReportController",
+    "Method": "ExportSalesReportExcel",
+    "RelativePath": "api/SalesReport/ExportSalesReportExcel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "from",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "to",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Ecommerce_ASP.NET.Controllers.SearchController",
     "Method": "AutoComplete",
     "RelativePath": "api/Search/AutoComplete",
