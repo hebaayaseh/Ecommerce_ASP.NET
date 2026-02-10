@@ -6,5 +6,6 @@
         PaymentCompleted,
         OrderShipped,
         Cancelled,
+        Warning,
     }
 }
